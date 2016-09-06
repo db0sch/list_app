@@ -53,6 +53,9 @@ AS A VISITOR, I cannot create a portfolio, add a resource, star or comment.
 The database schema xml file is provided in the root folder of this repo => file_name: `mnmlist_db_schema.xml`
 You can view the schema by importing this xml code to : [db.lewagon.org](http://db.lewagon.org)
 
+## Social
+For the following system, we user this gem [acts_as_follower](https://github.com/tcocca/acts_as_follower)
+
 ---
 
 Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
