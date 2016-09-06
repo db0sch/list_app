@@ -18,6 +18,7 @@ gem 'simple_form'
 gem 'autoprefixer-rails'
 gem "acts_as_follower"
 gem 'acts_as_votable', '~> 0.10.0'
+gem "pundit"
 
 
 group :development, :test do
