@@ -11,6 +11,9 @@ class User < ApplicationRecord
   # 'acts_as_follower' enables users to follow someone/something.
   acts_as_follower
 
+  # acts_as_votable gem in order to upvote/downvote a collection or a resources
+  acts_as_voter
+
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
