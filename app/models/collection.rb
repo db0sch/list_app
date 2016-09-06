@@ -8,6 +8,7 @@ class Collection < ApplicationRecord
   validates :description, presence: true;
   validates :description, length: { minimum: 5 }
 
+  # acts_as_followable gem in order to allow users to follow a collection
   acts_as_followable
 
 end
