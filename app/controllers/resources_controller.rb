@@ -13,11 +13,13 @@ class ResourcesController < ApplicationController
 
   def new
     @resource = Resource.new
+    authorize @resource
   end
 
   def create
     @resource = Resource.new(resource_params)
     @resource.collection = @collection
+    authorize @resource
     @resource.save
     redirect_to collection_path(@collection)
   end
@@ -44,6 +46,7 @@ class ResourcesController < ApplicationController
 
   def set_resource
     @resource = Resource.find(params[:id])
+    authorize @resource
   end
 
   def set_collection

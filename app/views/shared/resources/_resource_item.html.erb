@@ -1,5 +1,5 @@
 <div class="resource-item">
-  <h5><%= link_to resource.title, resource.uri %></h5>
+  <h5><%= link_to resource.title, collection_resource_path(resource.collection, resource) %></h5>
   <p>Description: <%= resource.content %></p>
   <p>URL: <%= link_to resource.uri, resource.uri %></p>
   <%= link_to "edit", edit_collection_resource_path(resource.collection, resource) %>
