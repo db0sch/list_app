@@ -1,0 +1,27 @@
+.resource-item {
+  display: flex;
+  padding: 5px 10px 5px 2px;
+  .resource-item-actions {
+    flex: 0 1 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    i {
+      color: lightgrey;
+      margin: 0 5px 0 5px;
+    }
+  }
+  .resource-item-content {
+    flex: 1 1 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .resource-item-admin-controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+  }
+}
