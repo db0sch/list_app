@@ -7,4 +7,7 @@ class Collection < ApplicationRecord
   validates :title, length: { minimum: 5, maximum: 100 }
   validates :description, presence: true;
   validates :description, length: { minimum: 5 }
+
+  acts_as_followable
+
 end
