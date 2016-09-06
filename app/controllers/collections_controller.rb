@@ -10,7 +10,6 @@ class CollectionsController < ApplicationController
   end
 
   def new
-    raise
     @collection = Collection.new
   end
 
