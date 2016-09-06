@@ -54,7 +54,9 @@ The database schema xml file is provided in the root folder of this repo => file
 You can view the schema by importing this xml code to : [db.lewagon.org](http://db.lewagon.org)
 
 ## Social
-For the following system, we user this gem [acts_as_follower](https://github.com/tcocca/acts_as_follower)
+For the following system, we use this gem [acts_as_follower](https://github.com/tcocca/acts_as_follower)
+For the votation system (upvote...), we use this gem [acts_as_votable](https://github.com/ryanto/acts_as_votable)
+=> There is probably a cache column to add to the votable models, to increase performance, on the votation system. Cf. gem's doc.
 
 ---
 

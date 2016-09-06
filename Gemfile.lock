@@ -50,6 +50,7 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     acts_as_follower (0.2.1)
+    acts_as_votable (0.10.0)
     arel (7.1.1)
     autoprefixer-rails (6.4.1)
       execjs
@@ -189,6 +190,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_follower
+  acts_as_votable (~> 0.10.0)
   autoprefixer-rails
   better_errors
   binding_of_caller
