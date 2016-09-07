@@ -1,8 +1,8 @@
 class ResourcesController < ApplicationController
-  before_action :set_resource, only: [:show, :edit, :update, :destroy]
+  before_action :set_resource, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
   before_action :set_collection, only: [:new, :create, :edit, :update, :destroy]
 
-
+  # CRUD Actions
   def index
     # no use of index
   end
@@ -36,6 +36,18 @@ class ResourcesController < ApplicationController
   def destroy
     @resource.destroy
     redirect_to collection_path(@collection)
+  end
+
+  # Non-CRUD Actions
+
+  def upvote
+    @resource.upvote_by current_user
+    redirect_to :back
+  end
+
+  def downvote
+    @resource.downvote_by current_user
+    redirect_to :back
   end
 
   private

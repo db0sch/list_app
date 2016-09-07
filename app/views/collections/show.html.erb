@@ -1,5 +1,10 @@
 <div class="container">
-  <h3><%= @collection.title %></h3>
+  <div class="collection-title-block">
+    <h3><%= @collection.title %></h3>
+    <%= link_to like_collection_path(@collection), method: :put do %>
+      <%= current_user.voted_up_on?(@collection) ? icon('star') : icon('star-o') %>
+    <% end %>
+  </div>
 
   <h4>Description:</h4>
   <p><%= @collection.description %></p>
