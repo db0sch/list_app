@@ -1,14 +1,14 @@
 <div class="row">
   <div class="col-xs-12">
     <div class="resource-item">
-      <div class="resource-item-actions">
-        <%= icon('caret-up')  %>
-        <%= icon('comment')  %>
-      </div>
       <div class="resource-item-content">
         <h5><%= link_to resource.title, collection_resource_path(resource.collection, resource) %></h5>
         <p>Description: <%= resource.content %></p>
         <p>URL: <%= link_to resource.uri, resource.uri %></p>
+        <div class="resource-item-actions">
+          <%= icon('caret-up')  %>
+          <%= icon('comment')  %>
+        </div>
       </div>
       <div class="resource-item-admin-controls">
         <%= link_to "edit", edit_collection_resource_path(resource.collection, resource) %>
