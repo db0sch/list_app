@@ -1,3 +1,5 @@
-<% @collections.each do |collection| %>
-  <%= render 'shared/collections/collection_item', collection: collection %>
-<% end %>
+<div class="container">
+  <% @collections.each do |collection| %>
+    <%= render 'shared/collections/collection_item', collection: collection %>
+  <% end %>
+</div>
