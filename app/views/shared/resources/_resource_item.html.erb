@@ -6,7 +6,15 @@
         <p>Description: <%= resource.content %></p>
         <p>URL: <%= link_to resource.uri, resource.uri %></p>
         <div class="resource-item-actions">
-          <%= icon('caret-up')  %>
+          <%= link_to like_collection_resource_path(resource.collection, resource), method: :put do %>
+            <%= icon('caret-up')  %>
+            <%= resource.get_upvotes.size %>
+          <% end %>
+          <%= link_to dislike_collection_resource_path(resource.collection, resource), method: :put do %>
+            <%= icon('caret-down')  %>
+            <%= resource.get_downvotes.size %>
+          <% end %>
+
           <%= icon('comment')  %>
         </div>
       </div>

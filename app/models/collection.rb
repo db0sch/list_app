@@ -11,4 +11,7 @@ class Collection < ApplicationRecord
   # acts_as_followable gem in order to allow users to follow a collection
   acts_as_followable
 
+  # acts_as_votable gem
+  acts_as_votable
+
 end

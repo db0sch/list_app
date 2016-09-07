@@ -23,4 +23,12 @@ class ResourcePolicy < ApplicationPolicy
     record.collection.user == user
   end
 
+  def upvote?
+    true
+  end
+
+  def downvote?
+    true
+  end
+
 end

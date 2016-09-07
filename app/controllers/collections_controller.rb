@@ -1,5 +1,5 @@
 class CollectionsController < ApplicationController
-  before_action :set_collection, only: [:show, :edit, :update, :destroy]
+  before_action :set_collection, only: [:show, :edit, :update, :destroy, :like]
 
   def index
     @collections = policy_scope(Collection)
@@ -35,6 +35,15 @@ class CollectionsController < ApplicationController
     authorize @collection
     @collection.destroy
     redirect_to collections_path
+  end
+
+  # non-CRUD actions
+  def like
+    @collection.liked_by current_user
+    unless @collection.vote_registered?
+      @collection.disliked_by current_user
+    end
+    redirect_to :back
   end
 
   private

@@ -26,4 +26,8 @@ class CollectionPolicy < ApplicationPolicy
   def destroy?
     record.user == user
   end
+
+  def like?
+    true
+  end
 end

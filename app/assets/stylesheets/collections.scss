@@ -1,3 +1,12 @@
 // Place all the styles related to the collections controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.collection-title-block {
+  display: flex;
+  align-items: baseline;
+  i {
+    font-size: 1.5em;
+    margin: 0 15px 0 15px;
+  }
+}
