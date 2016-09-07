@@ -1,68 +1,63 @@
-<div class="navbar-wagon">
-  <!-- Logo -->
-  <%= link_to root_path, class: "navbar-wagon-brand" do %>
-    <%= image_tag "logo.png" %>
-  <% end %>
-
-  <!-- Right Navigation -->
-  <div class="navbar-wagon-right hidden-xs hidden-sm">
-
-    <!-- Search form -->
-    <form action="" class="navbar-wagon-search">
-      <input type="text" class="navbar-wagon-search-input" placeholder="Search something">
-      <button type="submit" class="navbar-wagon-search-btn">
-        <i class="fa fa-search"></i>
-      </button>
-    </form>
-
-    <!-- Different navigation if login or not -->
-    <% if user_signed_in? %>
-
-      <!-- Notification -->
-      <%= link_to "#", class: "navbar-wagon-item navbar-wagon-link" do %>
-        <div class="badge-container">
-          <i class="fa fa-envelope-o"></i>
-          <div class="badge badge-blue">3</div>
-        </div>
-      <% end %>
-
-      <!-- Profile picture and dropdown -->
-      <div class="navbar-wagon-item">
-        <div class="dropdown">
-          <%= image_tag "http://placehold.it/30x30", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
-          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-            <li>
-              <%= link_to "#" do %>
-                <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to "#" do %>
-                <i class="fa fa-home"></i>  <%= t(".profile", default: "Home") %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to destroy_user_session_path, method: :delete do %>
-                <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
-              <% end %>
-            </li>
-          </ul>
-        </div>
+<nav>
+  <div class="container">
+    <div class="navbar">
+      <!-- Left part -->
+      <div class="navbar-left">
+      <!-- Logo -->
+          <%= image_tag "logo.png" %>
       </div>
 
-    <% else %>
+      <!-- Middle part (for search for instance)-->
+      <div class="navbar-middle">
 
-      <!-- Login text link -->
-      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+        <!-- Search form -->
+        <form action="" class="navbar-search">
+          <input type="text" class="navbar-search-input" placeholder="Search something">
+          <button type="submit" class="navbar-search-btn">
+            <i class="fa fa-search"></i>
+          </button>
+        </form>
 
-    <% end %>
+      </div>
 
-    <!-- Button (call-to-action) -->
-    <%= link_to t(".top_call_to_action", default: "Create a collection"), new_collection_path, class: "navbar-wagon-item navbar-wagon-button btn" %>
+      <!-- right part -->
+      <div class="navbar-right">
+        <!-- Call to action button -->
+        <div class="btn btn-mnml-empty">Create</div>
+        <!-- Profile picture and dropdown -->
+        <div class="navbar-profile-menu">
+          <div class="dropdown">
+            <%= image_tag "http://placehold.it/30x30", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+            <ul class="dropdown-menu dropdown-menu-right">
+              <li>
+                <%= link_to "#" do %>
+                  <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to "#" do %>
+                  <i class="fa fa-home"></i>  <%= t(".profile", default: "Home") %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to destroy_user_session_path, method: :delete do %>
+                  <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+                <% end %>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
   </div>
+</nav>
+
 
   <!-- Dropdown list appearing on mobile only -->
-  <div class="navbar-wagon-item hidden-md hidden-lg">
+<!--   <div class="navbar-wagon-item hidden-md hidden-lg">
     <div class="dropdown">
       <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
@@ -71,6 +66,5 @@
         <li><a href="#">Other one</a></li>
       </ul>
     </div>
-  </div>
-</div>
+  </div> -->
 
