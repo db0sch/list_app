@@ -1,3 +1,66 @@
 // Place all the styles related to the resources controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$bgGradientBlueGreen: linear-gradient(270deg, rgb(54, 79, 107), rgb(63, 193, 201));
+$bgGradientBlueGreenWK: -webkit-linear-gradient(270deg, rgb(54, 79, 107), rgb(63, 193, 201));
+$bgGradientRedBlue: linear-gradient(270deg, rgb(252, 81, 133), rgb(54, 79, 107));
+$bgGradientRedBlueWK: -webkit-linear-gradient(270deg, rgb(252, 81, 133), rgb(54, 79, 107));
+$bgGradientBlueBlack: linear-gradient(270deg, rgb(54, 79, 107), rgb(0, 0, 0));
+$bgGradientBlueBlackWK: -webkit-linear-gradient(270deg, rgb(54, 79, 107), rgb(0, 0, 0));
+
+$gradientKey: random(3);
+
+$list: $bgGradientBlueGreen, $bgGradientRedBlue, $bgGradientBlueBlack;
+$listWK: $bgGradientBlueGreenWK, $bgGradientRedBlueWK, $bgGradientBlueBlackWK;
+$nth: nth($list, $gradientKey);
+$nthwk: nth($listWK, $gradientKey);
+
+.resource-wrapper {
+  background: $nth;
+  background: $nthwk;
+  .resource-header {
+    display: flex;
+    height: 10em;
+    .resource-title-block {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      h3 {
+        font-family: $base-font;
+        font-weight: 800;
+        font-size: 3em;
+        margin: 5px;
+      }
+    }
+  }
+}
+
+.resource-content {
+  .container {
+    background: white;
+    .resource-description {
+      margin-top: 30px;
+    }
+  }
+}
+
+.resource-stats {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  h4 {
+    align-self: flex-start;
+  }
+  .resource-stats-details {
+    display: flex;
+    justify-content: space-around;
+    > * {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}

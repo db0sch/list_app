@@ -26,10 +26,10 @@ $nthwk: nth($listWK, $gradientKey);
 
   .collection-header {
     height: 40vh;
-    margin: 30px;
+    margin: 30px 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     .collection-actions {
       flex: 0 0 15%;
@@ -66,8 +66,10 @@ $nthwk: nth($listWK, $gradientKey);
         justify-content: center;
         align-items: flex-start;
       h3 {
+        font-family: $base-font;
+        font-weight: 800;
         margin: 0px;
-        font-size: 2.5em;
+        font-size: 3em;
       }
       .collection-tagline p {
         margin: 0px;
