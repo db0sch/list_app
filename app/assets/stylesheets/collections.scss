@@ -2,12 +2,26 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// GRADIENT RANDOM ENGINE
+// It will pick randomly one of the three gradient available.
+
+// Variables:
+$bgGradientBlueGreen: linear-gradient(270deg, rgb(54, 79, 107), rgb(63, 193, 201));
+$bgGradientBlueGreenWK: -webkit-linear-gradient(270deg, rgb(54, 79, 107), rgb(63, 193, 201));
+$bgGradientRedBlue: linear-gradient(270deg, rgb(252, 81, 133), rgb(54, 79, 107));
+$bgGradientRedBlueWK: -webkit-linear-gradient(270deg, rgb(252, 81, 133), rgb(54, 79, 107));
+
+$gradientKey: random(2);
+
+$list: $bgGradientBlueGreen, $bgGradientRedBlue;
+$listWK: $bgGradientBlueGreenWK, $bgGradientRedBlueWK;
+$nth: nth($list, $gradientKey);
+$nthwk: nth($listWK, $gradientKey);
+
 .collection-wrapper {
-  // background: linear-gradient(-34deg, rgb(54, 79, 107), rgb(252, 81, 133));
-  // background: -webkit-linear-gradient(-34deg, rgb(54, 79, 107), rgb(252, 81, 133));
-  //
-  background: linear-gradient(-30deg, rgb(54, 79, 107), rgb(63, 193, 201));
-  background: -webkit-linear-gradient(-30deg, rgb(54, 79, 107), rgb(63, 193, 201));
+  background: $nth;
+  background: $nthwk;
+
   .collection-header {
     height: 40vh;
     margin: 30px;

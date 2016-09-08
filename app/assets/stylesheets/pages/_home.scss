@@ -4,28 +4,28 @@
  * ------------------------------------- */
 
 .home-banner {
-  background: linear-gradient(180deg, #455a64, #03a9f4);
-  background-size: 400% 400%;
+background: linear-gradient(180deg, #3fc1c9, #364f6b, #fc5185);
+background-size: 600% 600%;
 
-  -webkit-animation: BannerGradient 15s ease infinite;
-  -moz-animation: BannerGradient 15s ease infinite;
-  animation: BannerGradient 15s ease infinite;
+-webkit-animation: animatedGradient 30s ease infinite;
+-moz-animation: animatedGradient 30s ease infinite;
+animation: animatedGradient 30s ease infinite;
 
-  @-webkit-keyframes BannerGradient {
-      0%{background-position:0% 30%}
-      50%{background-position:100% 71%}
-      100%{background-position:0% 30%}
-  }
-  @-moz-keyframes BannerGradient {
-      0%{background-position:0% 30%}
-      50%{background-position:100% 71%}
-      100%{background-position:0% 30%}
-  }
-  @keyframes BannerGradient {
-      0%{background-position:0% 30%}
-      50%{background-position:100% 71%}
-      100%{background-position:0% 30%}
-  }
+@-webkit-keyframes animatedGradient {
+    0%{background-position:52% 0%}
+    50%{background-position:49% 100%}
+    100%{background-position:52% 0%}
+}
+@-moz-keyframes animatedGradient {
+    0%{background-position:52% 0%}
+    50%{background-position:49% 100%}
+    100%{background-position:52% 0%}
+}
+@keyframes animatedGradient {
+    0%{background-position:52% 0%}
+    50%{background-position:49% 100%}
+    100%{background-position:52% 0%}
+}
   .home-banner-content {
     height: 80vh;
     display: flex;
