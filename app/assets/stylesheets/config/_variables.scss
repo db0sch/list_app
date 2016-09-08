@@ -25,11 +25,15 @@ $base-height: 1.4;
  * Colors
  * ------------------------------------- */
 // Scheme
-$brand-color: #D23333;
+$brand-color: #364F6B;
 
-$red: #EE5F5B;
-$blue: #469AE0;
-$yellow: #FDB631;
-$orange: #E67E22;
-$green: #32B796;
+$red: #FC5185;
+$blue: #364F6B;
+$yellow: #FDB631; // do not user this variable
+$orange: #E67E22; // do not user this variable
+$green: #3FC1C9;
 $gray: #000000;
+$medium-gray: #BDBDBD;
+$light-gray: #F5F5F5;
+
+// the color palette has been found here : http://colorhunt.co/c/15830

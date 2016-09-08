@@ -1,24 +1,50 @@
-<div class="container">
-  <div class="collection-title-block">
-    <h3><%= @collection.title %></h3>
-    <%= link_to like_collection_path(@collection), method: :put do %>
-      <%= current_user.voted_up_on?(@collection) ? icon('star') : icon('star-o') %>
-    <% end %>
+<div class="collection-wrapper">
+  <div class="container">
+    <div class="collection-header">
+      <div class="collection-actions">
+        <div class="collection-favorite">
+          <p>Star</p>
+          <%= link_to like_collection_path(@collection), method: :put do %>
+            <%= current_user.voted_up_on?(@collection) ? icon('star') : icon('star-o') %>
+          <% end %>
+        </div>
+        <div class="collection-follow">
+          <p>Follow</p>
+          <%= icon('eye') %>
+        </div>
+      </div>
+      <div class="collection-title-block">
+        <div class="white-stripe">
+          <h3><%= @collection.title %></h3>
+        </div>
+        <div class="collection-tagline">
+          <div class="white-stripe">
+            <p><%= @collection.tagline %></p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <h4>Description:</h4>
-  <p><%= @collection.description %></p>
-
-  <h4>Resources</h4>
-  <%= link_to "add a resource", new_collection_resource_path(@collection) %>
-  <%= link_to "edit collection", edit_collection_path(@collection) %>
-  <%= link_to "delete this collection", collection_path(@collection), method: :delete, data: { confirm: "It will also delete all the resources inside this collection. Are you sure?" }  %>
-
-  <% if @collection.resources.any? %>
-    <%= render 'shared/resources/resources_list', resources: @collection.resources %>
-  <% else %>
-    <p>sorry, no resources attached to this collection yet</p>
-  <% end %>
-
 </div>
 
+<div class="collection-content">
+  <div class="container">
+    <div class="collection-description">
+      <h4>Description:</h4>
+      <p><%= @collection.description %></p>
+    </div>
+
+    <div class="collection-resources">
+      <h4>Resources</h4>
+      <%= link_to "add a resource", new_collection_resource_path(@collection) %>
+      <%= link_to "edit collection", edit_collection_path(@collection) %>
+      <%= link_to "delete this collection", collection_path(@collection), method: :delete, data: { confirm: "It will also delete all the resources inside this collection. Are you sure?" }  %>
+
+      <% if @collection.resources.any? %>
+        <%= render 'shared/resources/resources_list', resources: @collection.resources %>
+      <% else %>
+        <p>sorry, no resources attached to this collection yet</p>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -3,8 +3,8 @@
     <div class="resource-item">
       <div class="resource-item-content">
         <h5><%= link_to resource.title, collection_resource_path(resource.collection, resource) %></h5>
-        <p>Description: <%= resource.content %></p>
-        <p>URL: <%= link_to resource.uri, resource.uri %></p>
+        <p><%= truncate resource.content, length: 150, seperator: ' ' %>
+        <p><%= link_to resource.uri, resource.uri %></p>
         <div class="resource-item-actions">
           <%= link_to like_collection_resource_path(resource.collection, resource), method: :put do %>
             <%= icon('caret-up')  %>
