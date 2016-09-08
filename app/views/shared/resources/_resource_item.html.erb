@@ -5,23 +5,18 @@
         <h5><%= link_to resource.title, collection_resource_path(resource.collection, resource) %></h5>
         <p><%= truncate resource.content, length: 150, seperator: ' ' %>
         <p><%= link_to resource.uri, resource.uri %></p>
-        <div class="resource-item-actions">
-          <%= link_to like_collection_resource_path(resource.collection, resource), method: :put do %>
-            <%= icon('caret-up')  %>
-            <%= resource.get_upvotes.size %>
-          <% end %>
-          <%= link_to dislike_collection_resource_path(resource.collection, resource), method: :put do %>
-            <%= icon('caret-down')  %>
-            <%= resource.get_downvotes.size %>
-          <% end %>
-
-          <%= icon('comment')  %>
+      </div>
+      <div class="resource-item-options">
+        <%= render 'shared/resources/vote_btn', resource: resource %>
+        <div class="resource-item-comments">
+          <div class="resource-item-comments-nb">24</div>
+          <p>comments</p>
         </div>
       </div>
-      <div class="resource-item-admin-controls">
-        <%= link_to "edit", edit_collection_resource_path(resource.collection, resource) %>
-        <%= link_to "delete", collection_resource_path(resource.collection, resource), method: :delete, data: { confirm: "are you sure your want to delete this resource?" }  %>
-      </div>
+<!--       <div class="resource-item-admin-controls">
+        <%# link_to "edit", edit_collection_resource_path(resource.collection, resource) %>
+        <%# link_to "delete", collection_resource_path(resource.collection, resource), method: :delete, data: { confirm: "are you sure your want to delete this resource?" }  %>
+      </div> -->
     </div>
   </div>
 </div>
