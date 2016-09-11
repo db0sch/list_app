@@ -29,7 +29,7 @@ nav {
           border-radius: 2px;
           .navbar-search-input {
             flex: 1 1 95%;
-            width: 400px;
+            // width: 400px;
             border: none;
             &:focus  {
               border: none;
@@ -48,6 +48,17 @@ nav {
         justify-content: flex-end;
         .btn-mnml-empty, .navbar-profile-menu {
           margin: 0 10px;
+        }
+      }
+      .navbar-right-mobile {
+        // flex: 0 0 10%;
+        font-size: 1.5em;
+        color: #364F6B;
+        justify-content: center;
+        .dropdown {
+          margin-left: 20px;
+          display: flex;
+          justify-content: flex-end;
         }
       }
     }
