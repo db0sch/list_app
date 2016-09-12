@@ -1,3 +1,15 @@
 <div class="comment-item">
-  <%= comment.content %>
+  <div class="comment-details">
+    <p><%= comment.user.email %></p>
+    <p> - </p>
+    <p><%= time_ago_in_words(comment.created_at) + " ago"%></p>
+    <% if policy(comment).update? && policy(comment).destroy? %>
+      <p>|</p>
+      <%= link_to 'edit', collection_resource_comment_path(comment.commentable.collection, comment.commentable, comment)  %>
+      <%= link_to 'delete', collection_resource_comment_path(comment.commentable.collection, comment.commentable, comment), method: :delete, data: { confirm: "Are you sure you want to delete this comment?" }  %>
+    <% end %>
+  </div> <!-- .comment-details -->
+  <div class="comment-content">
+    <%= comment.content %>
+  </div> <!-- .comment-content -->
 </div>

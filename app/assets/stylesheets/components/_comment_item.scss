@@ -1,0 +1,21 @@
+.comment-item {
+  padding: 10px;
+  border-bottom: 1px solid #E6E6E6;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .comment-details {
+    font-size: 0.6em;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    p, a {
+      margin: 0 5px 0 0;
+    }
+  }
+  .comment-content {
+    margin: 10px 0 0 0;
+    font-size: 0.8em;
+  }
+}
+

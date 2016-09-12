@@ -64,3 +64,12 @@ $nthwk: nth($listWK, $gradientKey);
     }
   }
 }
+
+.resource-comments {
+  .container {
+    background-color: white;
+    .resource-comments-list {
+      margin: 20px 0 20px 0;
+    }
+  }
+}
