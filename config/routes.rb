@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :collections do
     resources :resources do
+      # cf. polymorphic routes
       resources :comments, only: [:create, :update, :destroy]
       member do
         put "like", to: "resources#upvote"
@@ -13,6 +14,7 @@ Rails.application.routes.draw do
     member do
       put "like", to: "collections#like"
     end
+    # cf. polymorphic routes
     resources :comments, only: [:create, :update, :destroy]
   end
 end

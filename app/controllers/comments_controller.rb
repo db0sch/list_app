@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
   end
 
   def update
-
+    # TODO (replace comment item for form to edit the comment)
   end
 
   def destroy

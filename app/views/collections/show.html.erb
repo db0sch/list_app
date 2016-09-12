@@ -41,6 +41,7 @@
       <%= link_to "delete this collection", collection_path(@collection), method: :delete, data: { confirm: "It will also delete all the resources inside this collection. Are you sure?" }  %>
 
       <% if @collection.resources.any? %>
+      <!-- render the list of resources belonging to this collection -->
         <%= render 'shared/resources/resources_list', resources: @collection.resources %>
       <% else %>
         <p>sorry, no resources attached to this collection yet</p>
@@ -49,16 +50,16 @@
   </div>
 </div>
 
-
+<!-- comments -->
 <div class="collection-comments">
   <div class="container">
     <h4>Comments</h4>
     <div class="collection-comments-form">
-      <!-- TODO -->
+    <!-- render the form for creating a comment -->
       <%= render 'shared/comments/collection_comment_form', comment: @comment, collection: @collection %>
     </div>
     <div class="collection-comments-list">
-      <!-- TODO -->
+    <!-- render the list of the comments -->
       <%= render 'shared/comments/comments_list', comments: @collection.comments %>
     </div>
   </div>
