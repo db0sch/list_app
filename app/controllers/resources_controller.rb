@@ -9,6 +9,7 @@ class ResourcesController < ApplicationController
 
   def show
     # the @resource variable has been set with the before_action 'set_resource' method.
+    @comment = Comment.new
   end
 
   def new

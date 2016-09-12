@@ -43,10 +43,11 @@
     <h4>Comments</h4>
     <div class="resource-comments-form">
       <!-- TODO -->
+      <%= render 'shared/comments/comment_form', comment: @comment, resource: @resource %>
     </div>
     <div class="resource-comments-list">
       <!-- TODO -->
-      <%= render 'shared/comments/comment_item', comments: @resource.comments %>
+      <%= render 'shared/comments/comments_list', comments: @resource.comments %>
     </div>
   </div>
 </div>
