@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
   def follow
     current_user.follow(@user)
-    redirect_to :back
+    redirect_to user_path(@user)
   end
 
   private
