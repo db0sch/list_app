@@ -17,4 +17,6 @@ Rails.application.routes.draw do
     # cf. polymorphic routes
     resources :comments, only: [:create, :update, :destroy]
   end
+
+  resources :users, only: [:show]
 end
