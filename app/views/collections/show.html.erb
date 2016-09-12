@@ -48,3 +48,19 @@
     </div>
   </div>
 </div>
+
+
+<div class="collection-comments">
+  <div class="container">
+    <h4>Comments</h4>
+    <div class="collection-comments-form">
+      <!-- TODO -->
+      <%= render 'shared/comments/collection_comment_form', comment: @comment, collection: @collection %>
+    </div>
+    <div class="collection-comments-list">
+      <!-- TODO -->
+      <%= render 'shared/comments/comments_list', comments: @collection.comments %>
+    </div>
+  </div>
+</div>
+

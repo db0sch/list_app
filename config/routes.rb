@@ -13,5 +13,6 @@ Rails.application.routes.draw do
     member do
       put "like", to: "collections#like"
     end
+    resources :comments, only: [:create, :update, :destroy]
   end
 end
