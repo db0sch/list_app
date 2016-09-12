@@ -1,0 +1,13 @@
+<div class="vote-panel">
+  <%= link_to like_collection_resource_path(resource.collection, resource), class:"upvote-btn", method: :put do %>
+    <div class="up-arrow">
+      <%= icon('angle-up') %>
+    </div>
+    <p><%= resource.get_upvotes.size %></p>
+  <% end %>
+  <%= link_to dislike_collection_resource_path(resource.collection, resource), class:"downvote-btn", method: :put do %>
+    <div class="down-arrow">
+      <%= icon('angle-down') %>
+    </div>
+  <% end %>
+</div>

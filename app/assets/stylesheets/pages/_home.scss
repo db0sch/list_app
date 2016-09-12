@@ -2,3 +2,50 @@
  * CSS code specific to home page
  * (margin/padding adjustments)
  * ------------------------------------- */
+
+.home-banner {
+background: linear-gradient(180deg, #3fc1c9, #364f6b, #fc5185);
+background-size: 600% 600%;
+
+-webkit-animation: animatedGradient 30s ease infinite;
+-moz-animation: animatedGradient 30s ease infinite;
+animation: animatedGradient 30s ease infinite;
+
+@-webkit-keyframes animatedGradient {
+    0%{background-position:52% 0%}
+    50%{background-position:49% 100%}
+    100%{background-position:52% 0%}
+}
+@-moz-keyframes animatedGradient {
+    0%{background-position:52% 0%}
+    50%{background-position:49% 100%}
+    100%{background-position:52% 0%}
+}
+@keyframes animatedGradient {
+    0%{background-position:52% 0%}
+    50%{background-position:49% 100%}
+    100%{background-position:52% 0%}
+}
+  .home-banner-content {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    // align-content: flex-start;
+    .logo-stripe {
+      // flex: 0 1 auto;
+      background: white;
+      padding: 0px 5px;
+      h1, p {
+        margin: 0px;
+      }
+    }
+  }
+}
+
+// @media (max-width: @screen-sm) {
+//   h1 {
+//     font-size: 0.5em;
+//   }
+// }

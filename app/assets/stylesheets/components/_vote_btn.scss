@@ -1,0 +1,30 @@
+.vote-panel {
+  background-color: #364F6B;
+  border-radius: 4px;
+  width: 4.5em;
+  display: flex;
+  a.upvote-btn {
+    text-decoration: none;
+    color: white;
+    border-right: 1px solid white;
+    flex: 1 0 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    i {
+      margin-right: 3px;
+    }
+    p {
+      font-size: 0.8em;
+      margin-bottom: 0px;
+      margin-left: 3px;
+    }
+  }
+  a.downvote-btn {
+    color: white;
+    flex: 1 0 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
