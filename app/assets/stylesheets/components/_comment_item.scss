@@ -19,3 +19,14 @@
   }
 }
 
+.comment-deleted {
+  .comment-details {
+    color: lightgray;
+  }
+  .comment-content {
+    p {
+      color: lightgray;
+      font-style: italic;
+    }
+  }
+}

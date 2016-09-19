@@ -1,0 +1,19 @@
+<% if @comment.errors.any? %>
+  // Render new comment form with errors
+  <% if @comment.commentable.is_a? Resource %>
+    $('#new_comment').html("<%= j render 'shared/comments/resource_comment_form', comment: @comment, commentable: @comment.commentable %>");
+  <% else %>
+    $('#new_comment').html("<%= j render 'shared/comments/collection_comment_form', comment: @comment, commentable: @comment.commentable %>");
+  <% end %>
+<% else %>
+  // render the comment_item and hide it. Stored in a variable.
+  var commentItem = $("<%= j render 'shared/comments/comment_item', comment: @comment %>").hide();
+  // prepend it to the comments-list
+  $('.collection-comments-list').prepend(commentItem);
+  $('.resource-comments-list').prepend(commentItem);
+  // make it appear with a nice and smoothy slideDown.
+  commentItem.slideDown();
+  // delete value inside the comment form text area.
+  $('#comment_content').val('');
+<% end %>
+
