@@ -8,15 +8,29 @@ class CommentsController < ApplicationController
     @comment.user = current_user
     if @comment.save
       if @comment.commentable.class == Resource
-        redirect_to collection_resource_path(@commentable.collection, @resource)
+        respond_to do |format|
+          format.html { redirect_to collection_resource_path(@commentable.collection, @commentable) }
+          format.js  # <-- will render `app/views/comment/create.js.erb`
+        end
+        # redirect_to collection_resource_path(@commentable.collection, @resource)
       elsif @comment.commentable.class == Collection
-        redirect_to collection_path(@commentable)
+        # redirect_to collection_path(@commentable)
+        respond_to do |format|
+          format.html { redirect_to collection_path(@commentable) }
+          format.js  # <-- will render `app/views/comment/create.js.erb`
+        end
       end
     else
       if @comment.commentable.is_a? Resource
-        render 'resources/show'
+        respond_to do |format|
+          format.html { render 'resources/show' }
+          format.js  # <-- idem
+        end
       else
-        render 'collections/show'
+        respond_to do |format|
+          format.html { render 'collections/show' }
+          format.js  # <-- idem
+        end
       end
     end
   end
@@ -27,11 +41,11 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
-    if @commentable.is_a? Resource
-      redirect_to collection_resource_path(@commentable.collection, @commentable)
-    else
-      redirect_to collection_path(@commentable)
-    end
+    # if @commentable.is_a? Resource
+    #   redirect_to collection_resource_path(@commentable.collection, @commentable)
+    # else
+    #   redirect_to collection_path(@commentable)
+    # end
   end
 
   private
