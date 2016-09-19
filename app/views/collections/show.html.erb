@@ -2,9 +2,9 @@
   <div class="container">
     <div class="collection-header">
       <div class="collection-actions">
-        <div class="collection-favorite">
+        <div class="collection-favorite" id="collection-<%= @collection.id %>">
           <p>Star</p>
-          <%= link_to like_collection_path(@collection), method: :put do %>
+          <%= link_to like_collection_path(@collection), method: :put, remote: true do %>
             <%= current_user.voted_up_on?(@collection) ? icon('star') : icon('star-o') %>
           <% end %>
         </div>

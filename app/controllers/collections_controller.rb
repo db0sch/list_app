@@ -39,11 +39,14 @@ class CollectionsController < ApplicationController
 
   # non-CRUD actions
   def like
+    @user = current_user
     @collection.liked_by current_user
     unless @collection.vote_registered?
       @collection.disliked_by current_user
     end
-    redirect_to :back
+    respond_to do |format|
+      format.js  # <-- like.js.erb
+    end
   end
 
   private
