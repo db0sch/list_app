@@ -43,12 +43,17 @@ class ResourcesController < ApplicationController
 
   def upvote
     @resource.upvote_by current_user
-    redirect_to :back
+    # redirect_to :back
+    respond_to do |format|
+      format.js # upvote.js.erb
+    end
   end
 
   def downvote
     @resource.downvote_by current_user
-    redirect_to :back
+    respond_to do |format|
+      format.js  # downvote.js.erb
+    end
   end
 
   private
