@@ -1,0 +1,3 @@
+var resourceId = <%= @resource.id %>;
+var resourceUpVotes = <%= @resource.get_upvotes.size %>;
+$('#resource-' + resourceId).find('#resource-' + resourceId + '-upvotes').text(resourceUpVotes)

@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12">
-    <div class="resource-item">
+    <div class="resource-item" id="resource-<%= resource.id %>">
       <div class="resource-item-content">
         <h5><%= link_to resource.title, collection_resource_path(resource.collection, resource) %></h5>
         <p><%= truncate resource.content, length: 150, seperator: ' ' %>
