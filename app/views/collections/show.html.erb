@@ -17,11 +17,13 @@
         <div class="white-stripe">
           <h3><%= @collection.title %></h3>
         </div>
-        <div class="collection-tagline">
-          <div class="white-stripe">
-            <p><%= @collection.tagline %></p>
+        <% if @collection.tagline %>
+          <div class="collection-tagline">
+            <div class="white-stripe">
+              <p><%= @collection.tagline %></p>
+            </div>
           </div>
-        </div>
+        <% end %>
       </div>
     </div>
   </div>
@@ -36,10 +38,9 @@
 
     <div class="collection-resources">
       <h4>Resources</h4>
-      <%= link_to "add a resource", new_collection_resource_path(@collection) %>
+      <%= link_to "add a resource", new_collection_resource_path(@collection), class:"btn btn-primary", id:"resource-add-btn", remote: true%>
       <%= link_to "edit collection", edit_collection_path(@collection) %>
       <%= link_to "delete this collection", collection_path(@collection), method: :delete, data: { confirm: "It will also delete all the resources inside this collection. Are you sure?" }  %>
-
       <% if @collection.resources.any? %>
       <!-- render the list of resources belonging to this collection -->
         <%= render 'shared/resources/resources_list', resources: @collection.resources %>

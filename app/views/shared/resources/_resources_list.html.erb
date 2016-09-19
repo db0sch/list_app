@@ -1,3 +1,5 @@
-<% resources.each do |resource| %>
-  <%= render "shared/resources/resource_item", resource: resource %>
-<% end %>
+<div class="resources-list">
+  <% resources.each do |resource| %>
+    <%= render "shared/resources/resource_item", resource: resource %>
+  <% end %>
+</div> <!-- .resources-list -->

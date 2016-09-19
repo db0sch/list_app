@@ -1,0 +1,19 @@
+<% if @resource.errors.any? %>
+  // Render new resource form with errors
+  $('#new_resource').html("<%= j render 'shared/resources/resource_form', resource: @resource, collection: @collection %>");
+<% else %>
+  // Create a paragraph for the new resource. But hide it.
+  var new_resource = $("<%= j render 'shared/resources/resource_item', resource: @resource %>");
+  // Add it to the DOM, at the end of the existing resources. It's still hidden.
+  // $('.resources-list').prepend(new_resource);
+  $('#new_resource').after(new_resource);
+  // Remove the text from the content textarea.
+  $('#resource_content').val('');
+  $('#resource_title').val('');
+  $('#resource_uri').val('');
+  $('#new_resource').remove();
+  new_resource.slideDown();
+  addBtn.show();
+<% end %>
+
+

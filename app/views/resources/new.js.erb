@@ -1,0 +1,15 @@
+var resourceForm = $("<%= j render 'shared/resources/resource_form', collection: @collection, resource: @resource%>").hide();
+var form = $("form#new_resource");
+var addBtn = $('#resource-add-btn');
+
+if (form.length > 0) {
+  form.slideUp;
+  addBtn.show;
+} else {
+  $('.resources-list').prepend(resourceForm);
+  resourceForm.slideDown();
+  addBtn.hide();
+};
+
+
+
