@@ -1,0 +1,7 @@
+var followActivated = "collection-follow-activated"
+
+<% if current_user.following? @collection %>
+  $('.collection-follow').addClass(followActivated);
+<% else %>
+  $('.collection-follow').removeClass(followActivated);
+<% end %>

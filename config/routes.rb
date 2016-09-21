@@ -13,8 +13,15 @@ Rails.application.routes.draw do
     end
     member do
       put "like", to: "collections#like"
+      put "follow", to: "collections#follow"
     end
     # cf. polymorphic routes
     resources :comments, only: [:create, :update, :destroy]
+  end
+
+  resources :users, only: [:show] do
+    member do
+      put "follow", to: "users#follow"
+    end
   end
 end

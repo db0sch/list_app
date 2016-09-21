@@ -6,10 +6,8 @@ class User < ApplicationRecord
   # in order to put some validation of uniqueness on the name... We shall edit the devise form to add the name field for ex.
 
   # acts_as_follower gem in order to allow users to follow another user.
-  # 'acts_as_followable' enables users to followed.
-  acts_as_followable
-  # 'acts_as_follower' enables users to follow someone/something.
-  acts_as_follower
+  acts_as_follower # 'acts_as_follower' enables users to follow someone/something.
+  acts_as_followable   # 'acts_as_followable' enables users to followed.
 
   # acts_as_votable gem in order to upvote/downvote a collection or a resources
   acts_as_voter

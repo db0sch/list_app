@@ -2,15 +2,17 @@
   <div class="container">
     <div class="collection-header">
       <div class="collection-actions">
-        <div class="collection-favorite" id="collection-<%= @collection.id %>">
+        <div class="collection-favorite <%= 'collection-favorite-activated' if current_user.voted_up_on?(@collection) %>" id="collection-<%= @collection.id %>">
           <p>Star</p>
           <%= link_to like_collection_path(@collection), method: :put, remote: true do %>
             <%= current_user.voted_up_on?(@collection) ? icon('star') : icon('star-o') %>
           <% end %>
         </div>
-        <div class="collection-follow">
+        <div class="collection-follow <%= 'collection-follow-activated' if current_user.following?(@collection) %>">
           <p>Follow</p>
-          <%= icon('eye') %>
+          <%= link_to follow_collection_path(@collection), method: :put, remote: true do %>
+            <%= icon('eye') %>
+          <% end %>
         </div>
       </div>
       <div class="collection-title-block">
