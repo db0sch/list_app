@@ -4,4 +4,5 @@ class Comment < ApplicationRecord
 
   validates :user, presence: true;
   validates :content, presence: true;
+  validates :content, length: { minimum: 5 };
 end

@@ -21,8 +21,21 @@ class ResourcesController < ApplicationController
     @resource = Resource.new(resource_params)
     @resource.collection = @collection
     authorize @resource
-    @resource.save
-    redirect_to collection_path(@collection)
+
+    if @resource.save
+      respond_to do |format|
+        format.html { redirect_to collection_path(@collection) }
+        format.js  # <-- will render `app/views/resources/create.js.erb`
+      end
+    else
+      respond_to do |format|
+        format.html { render 'collections/show' }
+        format.js  # <-- idem
+      end
+    end
+
+    # @resource.save
+    # redirect_to collection_path(@collection)
   end
 
   def edit
@@ -43,12 +56,17 @@ class ResourcesController < ApplicationController
 
   def upvote
     @resource.upvote_by current_user
-    redirect_to :back
+    # redirect_to :back
+    respond_to do |format|
+      format.js # upvote.js.erb
+    end
   end
 
   def downvote
     @resource.downvote_by current_user
-    redirect_to :back
+    respond_to do |format|
+      format.js  # downvote.js.erb
+    end
   end
 
   private

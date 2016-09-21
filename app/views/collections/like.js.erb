@@ -1,0 +1,10 @@
+var collectionId = <%= @collection.id %>
+var starClassFull = "fa-star"
+var starClassEmpty = "fa-star-o"
+
+<% if current_user.liked? @collection %>
+  $('#collection-' + collectionId + ' > a > i').removeClass(starClassEmpty).addClass(starClassFull)
+<% else %>
+  $('#collection-' + collectionId + ' > a > i').removeClass(starClassFull).addClass(starClassEmpty)
+<% end %>
+

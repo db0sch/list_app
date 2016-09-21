@@ -1,0 +1,6 @@
+var commentId = <%= @comment.id %>
+$('#comment-' + commentId).addClass('comment-deleted');
+$('#comment-' + commentId + ' > .comment-details > .comment-time').text('deleted');
+$('#comment-' + commentId + ' > .comment-details > a').remove();
+$('#comment-' + commentId + ' > .comment-content').html('<p>comment deleted</p>');
+

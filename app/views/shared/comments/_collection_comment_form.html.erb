@@ -1,4 +1,4 @@
-<%= simple_form_for [collection, comment] do |f| %>
+<%= simple_form_for([commentable, comment], remote: true) do |f| %>
   <%= f.input :content %>
   <%= f.submit "add a comment", class: "btn btn-primary" %>
 <% end %>

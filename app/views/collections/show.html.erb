@@ -2,9 +2,9 @@
   <div class="container">
     <div class="collection-header">
       <div class="collection-actions">
-        <div class="collection-favorite">
+        <div class="collection-favorite" id="collection-<%= @collection.id %>">
           <p>Star</p>
-          <%= link_to like_collection_path(@collection), method: :put do %>
+          <%= link_to like_collection_path(@collection), method: :put, remote: true do %>
             <%= current_user.voted_up_on?(@collection) ? icon('star') : icon('star-o') %>
           <% end %>
         </div>
@@ -19,11 +19,13 @@
         <div class="white-stripe">
           <h3><%= @collection.title %></h3>
         </div>
-        <div class="collection-tagline">
-          <div class="white-stripe">
-            <p><%= @collection.tagline %></p>
+        <% if @collection.tagline %>
+          <div class="collection-tagline">
+            <div class="white-stripe">
+              <p><%= @collection.tagline %></p>
+            </div>
           </div>
-        </div>
+        <% end %>
       </div>
     </div>
   </div>
@@ -38,10 +40,9 @@
 
     <div class="collection-resources">
       <h4>Resources</h4>
-      <%= link_to "add a resource", new_collection_resource_path(@collection) %>
+      <%= link_to "add a resource", new_collection_resource_path(@collection), class:"btn btn-primary", id:"resource-add-btn", remote: true%>
       <%= link_to "edit collection", edit_collection_path(@collection) %>
       <%= link_to "delete this collection", collection_path(@collection), method: :delete, data: { confirm: "It will also delete all the resources inside this collection. Are you sure?" }  %>
-
       <% if @collection.resources.any? %>
       <!-- render the list of resources belonging to this collection -->
         <%= render 'shared/resources/resources_list', resources: @collection.resources %>
@@ -58,7 +59,7 @@
     <h4>Comments</h4>
     <div class="collection-comments-form">
     <!-- render the form for creating a comment -->
-      <%= render 'shared/comments/collection_comment_form', comment: @comment, collection: @collection %>
+      <%= render 'shared/comments/collection_comment_form', comment: @comment, commentable: @collection %>
     </div>
     <div class="collection-comments-list">
     <!-- render the list of the comments -->
