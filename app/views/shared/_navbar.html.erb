@@ -36,7 +36,9 @@
         <!-- right part -->
         <div class="navbar-right hidden-sm hidden-xs">
           <!-- Call to action button -->
-          <button class="btn btn-mnml-empty btn-mnml-empty-reverse-color">New list</button>
+          <%= link_to new_collection_path do %>
+            <button class="btn btn-mnml-empty btn-mnml-empty-reverse-color">New list</button>
+          <% end %>
           <!-- Profile picture and dropdown -->
           <div class="navbar-profile-menu">
             <div class="dropdown">
@@ -48,7 +50,7 @@
                   <% end %>
                 </li>
                 <li>
-                  <%= link_to "#" do %>
+                  <%= link_to root_path do %>
                     <%= t(".profile", default: "HOME") %>
                   <% end %>
                 </li>
@@ -71,7 +73,7 @@
             <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
             <ul class="dropdown-menu dropdown-menu-right mnmlist-dropdown-menu mnmlist-dropdown-menu-mobile">
               <li>
-                <%= link_to '#' do %>
+                <%= link_to new_collection_path do %>
                   <%= t(".new_list", default: "NEW LIST") %>
                 <% end %>
               </li>
@@ -81,7 +83,7 @@
                 <% end %>
               </li>
               <li>
-                <%= link_to "#" do %>
+                <%= link_to root_path do %>
                   <%= t(".profile", default: "HOME") %>
                 <% end %>
               </li>

@@ -70,7 +70,7 @@ nav {
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        .btn-mnml-empty, .navbar-profile-menu {
+        a.btn-mnml-empty, .navbar-profile-menu {
           margin: 0 10px;
         }
         .btn-mnml-empty {
@@ -78,6 +78,9 @@ nav {
           font-size: 0.8em;
           border: 2px solid $light-gray;
           color: $light-gray;
+          &:focus {
+            outline: none;
+          }
         }
       }
       .navbar-right-mobile {
