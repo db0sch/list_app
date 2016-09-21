@@ -4,6 +4,9 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  &:last-child {
+    border: none;
+  }
   .comment-details {
     font-size: 0.6em;
     display: flex;

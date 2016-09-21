@@ -1,1 +1,32 @@
 // Your footer style
+footer {
+  background-color: $brand-color;
+  .footer-content {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap-reverse;
+    .footer-credits {
+      flex: 1 1 70%;
+      display: flex;
+      justify-content: flex-start;
+      p {
+        color: $light-gray;
+        margin: 0;
+      }
+    }
+    .footer-links {
+      flex: 1 1 30%;
+      display: flex;
+      // justify-content: flex-end;
+      justify-content: space-between;
+      a {
+        // margin: 0 20px;
+        color: $light-gray;
+        // &:last-child {
+        //   margin: 0 0 0 20px;
+        // }
+      }
+    }
+  }
+}
