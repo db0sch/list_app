@@ -4,7 +4,9 @@
       <!-- Left part -->
       <div class="navbar-left hidden-sm hidden-xs">
       <!-- Logo -->
-          <%= image_tag "logo.png" %>
+        <%= link_to root_path do %>
+          <%= image_tag "mnmlist_logo.png" %>
+        <% end %>
       </div>
 
       <!-- Middle part (for search for instance)-->
@@ -23,7 +25,7 @@
       <!-- right part -->
       <div class="navbar-right hidden-sm hidden-xs">
         <!-- Call to action button -->
-        <div class="btn btn-mnml-empty">Create</div>
+        <button class="btn btn-mnml-empty btn-mnml-empty-reverse-color">New list</button>
         <!-- Profile picture and dropdown -->
         <div class="navbar-profile-menu">
           <div class="dropdown">

@@ -1,11 +1,10 @@
 nav {
   box-shadow: 0 1px 1px rgba(0,0,0,0.07);
-  height: 60px;
-  background: white;
+  background: $brand-color;
   .container {
 
     .navbar {
-      height: 60px;
+      height: 50px;
       margin: 0px;
       display: flex;
       justify-content: space-between;
@@ -13,8 +12,9 @@ nav {
       .navbar-left {
         flex: 1 0 10%;
         img {
-          width: 40px;
+          width: 130px;
         }
+        margin: 0 15px 0 0;
       }
       .navbar-middle {
         flex: 1 1 70%;
@@ -23,14 +23,15 @@ nav {
         .navbar-search {
           flex: 1 1 100%;
           display: flex;
-          height: 3rem;
-          border: 1px solid lightgrey;
+          height: 30px;
+          border: 2px solid $light-gray;
           padding: 2px 5px 2px 7px;
-          border-radius: 2px;
+          border-radius: 0px;
           .navbar-search-input {
             flex: 1 1 95%;
             // width: 400px;
             border: none;
+            background-color: $brand-color;
             &:focus  {
               border: none;
             }
@@ -46,8 +47,14 @@ nav {
         flex: 1 0 10%;
         display: flex;
         justify-content: flex-end;
-        .btn-mnml-empty, .navbar-profile-menu {
+        align-items: center;
+        button, .navbar-profile-menu {
           margin: 0 10px;
+        }
+        button {
+          font-size: 0.8em;
+          border: 2px solid $light-gray;
+          color: $light-gray;
         }
       }
       .navbar-right-mobile {
