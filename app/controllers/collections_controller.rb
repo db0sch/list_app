@@ -46,6 +46,14 @@ class CollectionsController < ApplicationController
     redirect_to :back
   end
 
+  def follow
+    if current_user.following? @collection
+      current_user.stop_following @collection
+    else
+      current_user.follow @collection
+    end
+  end
+
   private
 
   def collection_params

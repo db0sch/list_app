@@ -10,7 +10,9 @@
         </div>
         <div class="collection-follow">
           <p>Follow</p>
-          <%= icon('eye') %>
+          <%= link_to follow_collection_path(@collection), method: :put, remote: true do %>
+            <%= current_user.following?(@collection) ? icon('eye') : icon('eye') %>
+          <% end %>
         </div>
       </div>
       <div class="collection-title-block">
