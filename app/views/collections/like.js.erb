@@ -1,10 +1,9 @@
-var collectionId = <%= @collection.id %>
-var starClassFull = "fa-star"
-var starClassEmpty = "fa-star-o"
+var favoriteActivated = "collection-favorite-activated"
 
 <% if current_user.liked? @collection %>
-  $('#collection-' + collectionId + ' > a > i').removeClass(starClassEmpty).addClass(starClassFull)
+  $('.collection-favorite').addClass(favoriteActivated);
+  $('.collection-favorite > a > i').removeClass('fa-star-o').addClass('fa-star');
 <% else %>
-  $('#collection-' + collectionId + ' > a > i').removeClass(starClassFull).addClass(starClassEmpty)
+  $('.collection-favorite').removeClass(favoriteActivated);
+  $('.collection-favorite > a > i').addClass('fa-star-o').removeClass('fa-star');
 <% end %>
-

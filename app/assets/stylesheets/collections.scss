@@ -35,13 +35,6 @@ $nthwk: nth($listWK, $gradientKey);
       flex: 0 0 15%;
       align-self: flex-end;
       display: flex;
-      color: $light-gray;
-      a {
-        color: $light-gray;
-      }
-      i {
-        font-size: 1.5em;
-      }
       .collection-favorite, .collection-follow {
         height: 2em;
         padding: 5px;
@@ -52,9 +45,19 @@ $nthwk: nth($listWK, $gradientKey);
         justify-content: space-around;
         align-items: center;
         > * {
+          color: $light-gray;
           font-size: 0.8em;
           margin: 0 5px;
           flex: 0 0 auto;
+        }
+        i {
+          font-size: 1.5em;
+        }
+      }
+      .collection-favorite-activated, .collection-follow-activated {
+        background: $light-gray;
+        p, a {
+          color: $brand-color;
         }
       }
     }

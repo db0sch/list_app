@@ -30,4 +30,8 @@ class CollectionPolicy < ApplicationPolicy
   def like?
     true
   end
+
+  def follow?
+    true
+  end
 end

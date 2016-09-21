@@ -1,5 +1,5 @@
 class CollectionsController < ApplicationController
-  before_action :set_collection, only: [:show, :edit, :update, :destroy, :like]
+  before_action :set_collection, only: [:show, :edit, :update, :destroy, :like, :follow]
 
   def index
     @collections = policy_scope(Collection)
@@ -50,10 +50,16 @@ class CollectionsController < ApplicationController
   end
 
   def follow
+    message = current_user.following?(@collection) ? "YES, IT FOLLOWS IT" : "NO IT DOESN NOT FOLLOW IT"
     if current_user.following? @collection
       current_user.stop_following @collection
+      p "stop following"
     else
       current_user.follow @collection
+      p "follow !!"
+    end
+    respond_to do |format|
+      format.js  # <-- follow.js.erb
     end
   end
 
