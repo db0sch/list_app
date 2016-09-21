@@ -8,76 +8,92 @@
           <%= image_tag "mnmlist_logo.png" %>
         <% end %>
       </div>
+      <!-- if the user is not signed in to the application -->
+      <% unless user_signed_in? %>
 
-      <!-- Middle part (for search for instance)-->
-      <div class="navbar-middle">
+        <div class="navbar-right">
+          <%= link_to new_user_session_path do %>
+            <button class="btn btn-mnml-empty btn-mnml-empty-reverse-color">Sign in</button>
+          <% end %>
+        </div>
 
-        <!-- Search form -->
-        <form action="" class="navbar-search">
-          <input type="text" class="navbar-search-input" placeholder="Search something">
-          <button type="submit" class="navbar-search-btn">
-            <i class="fa fa-search"></i>
-          </button>
-        </form>
+      <% else %>
+      <!-- now, if the user is signed in. -->
 
-      </div>
+        <!-- Middle part (for search for instance)-->
+        <div class="navbar-middle">
 
-      <!-- right part -->
-      <div class="navbar-right hidden-sm hidden-xs">
-        <!-- Call to action button -->
-        <button class="btn btn-mnml-empty btn-mnml-empty-reverse-color">New list</button>
-        <!-- Profile picture and dropdown -->
-        <div class="navbar-profile-menu">
+          <!-- Search form -->
+          <form action="" class="navbar-search">
+            <input type="text" class="navbar-search-input" placeholder="Discover your next favorite list">
+            <button type="submit" class="navbar-search-btn">
+              <i class="fa fa-search"></i>
+            </button>
+          </form>
+
+        </div>
+
+        <!-- right part -->
+        <div class="navbar-right hidden-sm hidden-xs">
+          <!-- Call to action button -->
+          <button class="btn btn-mnml-empty btn-mnml-empty-reverse-color">New list</button>
+          <!-- Profile picture and dropdown -->
+          <div class="navbar-profile-menu">
+            <div class="dropdown">
+              <%= image_tag "http://placehold.it/30x30", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+              <ul class="dropdown-menu dropdown-menu-left mnmlist-dropdown-menu">
+                <li>
+                  <%= link_to "#" do %>
+                    <%= t(".profile", default: "PROFILE") %>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to "#" do %>
+                    <%= t(".profile", default: "HOME") %>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to destroy_user_session_path, method: :delete do %>
+                    <%= t(".sign_out", default: "LOG OUT") %>
+                  <% end %>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <!-- Dropdown list appearing on mobile only -->
+        <div class="navbar-right-mobile hidden-md hidden-lg">
           <div class="dropdown">
-            <%= image_tag "http://placehold.it/30x30", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
-            <ul class="dropdown-menu dropdown-menu-right">
+            <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
+            <ul class="dropdown-menu dropdown-menu-right mnmlist-dropdown-menu mnmlist-dropdown-menu-mobile">
               <li>
-                <%= link_to "#" do %>
-                  <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
+                <%= link_to '#' do %>
+                  <%= t(".new_list", default: "NEW LIST") %>
                 <% end %>
               </li>
               <li>
                 <%= link_to "#" do %>
-                  <i class="fa fa-home"></i>  <%= t(".profile", default: "Home") %>
+                  <%= t(".profile", default: "PROFILE") %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to "#" do %>
+                  <%= t(".profile", default: "HOME") %>
                 <% end %>
               </li>
               <li>
                 <%= link_to destroy_user_session_path, method: :delete do %>
-                  <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+                  <%= t(".sign_out", default: "LOG OUT") %>
                 <% end %>
               </li>
             </ul>
           </div>
         </div>
-      </div>
-      <!-- Dropdown list appearing on mobile only -->
-      <div class="navbar-right-mobile hidden-md hidden-lg">
-        <div class="dropdown">
-          <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
-          <ul class="dropdown-menu dropdown-menu-right">
-            <li>
-              <%= link_to '#' do %>
-                <%= icon('pencil') %> <p>Create</p>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to "#" do %>
-                <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to "#" do %>
-                <i class="fa fa-home"></i>  <%= t(".profile", default: "Home") %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to destroy_user_session_path, method: :delete do %>
-                <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
-              <% end %>
-            </li>
-          </ul>
-        </div>
-      </div>
+      <% end %>
     </div>
   </div>
 </nav>
