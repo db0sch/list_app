@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :update, :destroy]
   end
 
+  resources :activities, only: :index
+
   resources :users, only: [:show] do
     member do
       put "follow", to: "users#follow"

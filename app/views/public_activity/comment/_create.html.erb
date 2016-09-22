@@ -1,0 +1,5 @@
+<% if activity.trackable.is_a? Resource %>
+  commented the resource <%= link_to activity.trackable.title, activity.trackable %>
+<% else %>
+  commented the collection <%= link_to activity.trackable.title, activity.trackable %>
+<% end %>

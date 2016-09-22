@@ -17,6 +17,9 @@ class ApplicationController < ActionController::Base
   #   redirect_to(root_path)
   # end
 
+  # public_activity gem
+  include PublicActivity::StoreController
+
   private
 
   def configure_permitted_parameters

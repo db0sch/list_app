@@ -20,6 +20,7 @@ gem 'autoprefixer-rails'
 gem 'acts_as_follower', :github => 'tcocca/acts_as_follower'
 gem 'acts_as_votable', '~> 0.10.0'
 gem "pundit"
+gem 'public_activity'
 
 
 group :development, :test do
