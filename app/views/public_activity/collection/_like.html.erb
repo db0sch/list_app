@@ -1,0 +1,8 @@
+starred
+
+<% if activity.trackable %>
+  the collection <%= link_to activity.trackable.title, activity.trackable %>
+<% else %>
+  a collection which has since been removed.
+<% end %>
+

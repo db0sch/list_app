@@ -43,11 +43,13 @@ class CollectionsController < ApplicationController
 
   # non-CRUD actions
   def like
+    # refacto the IF ELSE statement in order to create activity only on the like (and not the dislike)
     @user = current_user
     @collection.liked_by current_user
-    unless @collection.vote_registered?
+    if @collection.vote_registered?
       @collection.disliked_by current_user
     end
+    @collection.create_activity :like, owner: current_user
     respond_to do |format|
       format.js  # <-- like.js.erb
     end
@@ -58,6 +60,7 @@ class CollectionsController < ApplicationController
       current_user.stop_following @collection
     else
       current_user.follow @collection
+      @collection.create_activity :follow, owner: current_user
     end
     respond_to do |format|
       format.js  # <-- follow.js.erb
