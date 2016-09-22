@@ -3,7 +3,9 @@ class User < ApplicationRecord
   has_many :resources, through: :collections
   has_many :comments, dependent: :destroy
 
+
   # in order to put some validation of uniqueness on the name... We shall edit the devise form to add the name field for ex.
+  validates :name, presence: true, uniqueness: true
 
   # acts_as_follower gem in order to allow users to follow another user.
   acts_as_follower # 'acts_as_follower' enables users to follow someone/something.
