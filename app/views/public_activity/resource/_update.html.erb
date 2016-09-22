@@ -1,1 +1,8 @@
-edited the resource <%= link_to activity.trackable.title, activity.trackable %> on collection <%= link_to activity.trackage.collection.title, activity.trackable.collection %>
+edited the resource
+
+<% if activity.trackable %>
+  <%= link_to activity.trackable.title, activity.trackable %> on collection <%= link_to activity.trackage.collection.title, activity.trackable.collection %>
+<% else %>
+  which has since been removed.
+<% end %>
+

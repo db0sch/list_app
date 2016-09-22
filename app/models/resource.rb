@@ -9,4 +9,8 @@ class Resource < ApplicationRecord
 
   #acts_as_votable gem to let users upvote or downvote this model.
   acts_as_votable
+
+  #public_acitivity gem
+  include PublicActivity::Common
+
 end

@@ -19,7 +19,9 @@ class CollectionsController < ApplicationController
     @collection.user = current_user
     authorize @collection
     @collection.save
+    @collection.create_activity :create, owner: current_user
     redirect_to collection_path(@collection)
+    # do a IF/ELSE statement on the save. in order to prevent errors...
   end
 
   def edit
@@ -28,7 +30,9 @@ class CollectionsController < ApplicationController
   def update
     authorize @collection
     @collection.update(collection_params)
+    @collection.create_activity :update, owner: current_user
     redirect_to collection_path(@collection)
+    # same here, muste do a IF/ELSE statement to handle errors
   end
 
   def destroy

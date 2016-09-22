@@ -14,7 +14,7 @@ class Collection < ApplicationRecord
   acts_as_votable
 
   # Public_activity gem, for keeping track of of everything done by users on collections.
-  include PublicActivity::Model
-  tracked owner: ->(controller, model) { controller && controller.current_user }
+  include PublicActivity::Common
+  # tracked owner: ->(controller, model) { controller && controller.current_user }
 
 end

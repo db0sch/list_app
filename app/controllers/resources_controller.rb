@@ -23,6 +23,7 @@ class ResourcesController < ApplicationController
     authorize @resource
 
     if @resource.save
+      @resource.create_activity :create, owner: current_user
       respond_to do |format|
         format.html { redirect_to collection_path(@collection) }
         format.js  # <-- will render `app/views/resources/create.js.erb`
@@ -44,6 +45,8 @@ class ResourcesController < ApplicationController
 
   def update
     @resource.update(resource_params)
+    @resource.create_activity :update, owner: current_user
+    # here again, must do a IF ELSE statement to handle errors.
     redirect_to collection_path(@collection)
   end
 

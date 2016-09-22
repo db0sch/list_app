@@ -1,5 +1,10 @@
-<% if activity.trackable.is_a? Resource %>
-  commented the resource <%= link_to activity.trackable.title, activity.trackable %>
+<% if activity.trackable %>
+  <% if activity.trackable.is_a? Resource %>
+    posted a comment on the resource <%= link_to activity.trackable.commentable.title, activity.trackable.commentable %>
+  <% else %>
+    posted a comment on the collection <%= link_to activity.trackable.commentable.title, activity.trackable.commentable %>
+  <% end %>
 <% else %>
-  commented the collection <%= link_to activity.trackable.title, activity.trackable %>
+  posted a comment on an item which has since been removed.
 <% end %>
+

@@ -7,6 +7,7 @@ class CommentsController < ApplicationController
     @comment.commentable = @commentable
     @comment.user = current_user
     if @comment.save
+      @comment.create_activity :create, owner: current_user
       if @comment.commentable.class == Resource
         respond_to do |format|
           format.html { redirect_to collection_resource_path(@commentable.collection, @commentable) }
