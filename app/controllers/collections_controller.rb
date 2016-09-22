@@ -50,13 +50,10 @@ class CollectionsController < ApplicationController
   end
 
   def follow
-    message = current_user.following?(@collection) ? "YES, IT FOLLOWS IT" : "NO IT DOESN NOT FOLLOW IT"
     if current_user.following? @collection
       current_user.stop_following @collection
-      p "stop following"
     else
       current_user.follow @collection
-      p "follow !!"
     end
     respond_to do |format|
       format.js  # <-- follow.js.erb
