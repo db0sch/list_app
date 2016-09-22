@@ -1,5 +1,39 @@
+<div class="user-wrapper">
+  <div class="container">
+    <div class="user-header">
+      <div class="user-actions">
+        <div class="user-follow <%= 'user-follow-activated' if current_user.following?(@user) %>">
+          <p>Follow</p>
+          <%= link_to follow_collection_path(@user), method: :put, remote: true do %>
+            <%= icon('eye') %>
+          <% end %>
+        </div>
+      </div>
+      <div class="user-title-block">
+        <div class="white-stripe">
+          <h3><%= @user.name %></h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <h3><%= @user.email %></h3>
 
 <%= link_to "follow", follow_user_path(@user), method: :put %>
 
 <p><%= current_user.following?(@user) ? "youpi" : "huhu" %></p>
+
+<div class="user-content">
+  <div class="container">
+    <div class="user-collections">
+      <h4>Collections</h4>
+      <% if @user.collections.any? %>
+      <!-- render the list of resources belonging to this user -->
+        <%= render 'shared/collections/collections_list', collections: @user.collections %>
+      <% else %>
+        <p>sorry, no collections attached to this user yet</p>
+      <% end %>
+    </div>
+  </div>
+</div>

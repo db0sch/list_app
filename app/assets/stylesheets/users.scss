@@ -1,3 +1,79 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// GRADIENT RANDOM ENGINE
+// It will pick randomly one of the three gradient available.
+
+// Variables:
+$bgGradientBlueGreen: linear-gradient(270deg, rgb(54, 79, 107), rgb(63, 193, 201));
+$bgGradientBlueGreenWK: -webkit-linear-gradient(270deg, rgb(54, 79, 107), rgb(63, 193, 201));
+$bgGradientRedBlue: linear-gradient(270deg, rgb(252, 81, 133), rgb(54, 79, 107));
+$bgGradientRedBlueWK: -webkit-linear-gradient(270deg, rgb(252, 81, 133), rgb(54, 79, 107));
+$bgGradientBlueBlack: linear-gradient(270deg, rgb(54, 79, 107), rgb(0, 0, 0));
+$bgGradientBlueBlackWK: -webkit-linear-gradient(270deg, rgb(54, 79, 107), rgb(0, 0, 0));
+
+$gradientKey: random(3);
+
+$list: $bgGradientBlueGreen, $bgGradientRedBlue, $bgGradientBlueBlack;
+$listWK: $bgGradientBlueGreenWK, $bgGradientRedBlueWK, $bgGradientBlueBlackWK;
+$nth: nth($list, $gradientKey);
+$nthwk: nth($listWK, $gradientKey);
+
+.user-wrapper {
+  background: $nth;
+  background: $nthwk;
+
+  .user-header {
+    height: 40vh;
+    margin: 30px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    .user-actions {
+      flex: 0 0 15%;
+      align-self: flex-end;
+      display: flex;
+      .user-favorite, .user-follow {
+        height: 2em;
+        padding: 5px;
+        margin: 0 5px 0 5px;
+        border: 1px solid $light-gray;
+        border-radius: 2px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        > * {
+          color: $light-gray;
+          font-size: 0.8em;
+          margin: 0 5px;
+          flex: 0 0 auto;
+        }
+        i {
+          font-size: 1.5em;
+        }
+      }
+      .user-follow-activated {
+        background: $light-gray;
+        p, a {
+          color: $brand-color;
+        }
+      }
+    }
+
+    .user-title-block {
+        flex: 1 0 85%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+      h3 {
+        font-family: $base-font;
+        font-weight: 800;
+        margin: 0px;
+        font-size: 3em;
+      }
+    }
+  }
+}
