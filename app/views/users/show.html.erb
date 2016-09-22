@@ -1,14 +1,17 @@
 <div class="user-wrapper">
   <div class="container">
     <div class="user-header">
-      <div class="user-actions">
-        <div class="user-follow <%= 'user-follow-activated' if current_user.following?(@user) %>">
-          <p>Follow</p>
-          <%= link_to follow_collection_path(@user), method: :put, remote: true do %>
-            <%= icon('eye') %>
-          <% end %>
+    <!-- if the user is on his own profile page, the follow btn doesn't appear -->
+      <% unless current_user == @user %>
+        <div class="user-actions">
+          <div class="user-follow <%= 'user-follow-activated' if current_user.following?(@user) %>">
+            <p>Follow</p>
+            <%= link_to follow_user_path(@user), method: :put, remote: true do %>
+              <%= icon('eye') %>
+            <% end %>
+          </div>
         </div>
-      </div>
+      <% end %>
       <div class="user-title-block">
         <div class="white-stripe">
           <h3><%= @user.name %></h3>
@@ -18,16 +21,32 @@
   </div>
 </div>
 
-<h3><%= @user.email %></h3>
-
-<%= link_to "follow", follow_user_path(@user), method: :put %>
-
-<p><%= current_user.following?(@user) ? "youpi" : "huhu" %></p>
+<div class="user-info">
+  <div class="container">
+    <div class="user-stats">
+      <div class="user-stats-details user-follow-users">
+        <h5>Follow (users)</h5>
+        <span class="user-follow-nb"><%= @user.following_by_type_count('User') %></span>
+      </div> <!-- .user-follow -->
+      <div class="user-stats-details user-follow-collections">
+        <h5>Follow (collections)</h5>
+        <span class="user-follow-nb"><%= @user.following_by_type_count('Collection') %></span>
+      </div> <!-- .user-follow -->
+      <div class="user-stats-details user-follower">
+        <h5>Follower</h5>
+        <span class="user-follower-nb"><%= @user.followers_count %></span>
+      </div> <!-- .user-follower -->
+      <div class="user-stats-details user-number-collections">
+        <h5>Collections</h5>
+        <span class="user-collection-nb"><%= @user.collections.size %></span>
+      </div> <!-- .user-number-collections -->
+    </div> <!-- .user-stats -->
+  </div> <!-- .container -->
+</div> <!-- .user-info -->
 
 <div class="user-content">
   <div class="container">
     <div class="user-collections">
-      <h4>Collections</h4>
       <% if @user.collections.any? %>
       <!-- render the list of resources belonging to this user -->
         <%= render 'shared/collections/collections_list', collections: @user.collections %>
