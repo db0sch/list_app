@@ -1,0 +1,16 @@
+<% case activity.key %>
+<% when "collection.follow" %>
+  <%= icon('user-plus') %>
+<% when "collection.like" %>
+  <%= icon('star') %>
+<% when "collection.create" %>
+  <%= icon('plus') %>
+<% when "collection.update" %>
+  <%= icon('pencil') %>
+<% when "resource.upvote" %>
+  <%= icon('thumbs-up') %>
+<% when "resource.create" %>
+  <%= icon('plus') %>
+<% when "comment.create" %>
+  <%= icon('comments') %>
+<% end %>

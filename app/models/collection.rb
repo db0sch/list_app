@@ -10,8 +10,11 @@ class Collection < ApplicationRecord
 
   # acts_as_followable gem in order to allow users to follow a collection
   acts_as_followable
-
-  # acts_as_votable gem
+  # acts_as_votable gem (a collection can be voted by a user)
   acts_as_votable
+
+  # Public_activity gem, for keeping track of of everything done by users on collections.
+  include PublicActivity::Common
+  # tracked owner: ->(controller, model) { controller && controller.current_user }
 
 end
