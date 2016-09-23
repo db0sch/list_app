@@ -14,6 +14,21 @@ class User < ApplicationRecord
   # acts_as_votable gem in order to upvote/downvote a collection or a resources
   acts_as_voter
 
+  # Algolia Search Engine
+  include AlgoliaSearch
+
+  algoliasearch do
+    attribute :name, :email
+
+    add_attribute :followers_count do
+      followers_count
+    end
+
+    attributesToIndex ['name', 'email']
+
+    customRanking ['desc(followers_count)']
+  end
+
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

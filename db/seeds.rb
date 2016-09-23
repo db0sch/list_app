@@ -5,3 +5,16 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+10.times do
+  user = User.first
+  collection = Collection.create(title: Faker::Book.title, tagline: Faker::Hipster.sentence, description: Faker::Hipster.paragraph, user: user)
+  10.times do
+    Resource.create(title: Faker::Commerce.product_name, content: Faker::Lorem.sentence, uri: Faker::Internet.url, collection: collection)
+  end
+  user = User.last
+  collection = Collection.create(title: Faker::Book.title, tagline: Faker::Hipster.sentence, description: Faker::Hipster.paragraph, user: user)
+  10.times do
+    Resource.create(title: Faker::Commerce.product_name, content: Faker::Lorem.sentence, uri: Faker::Internet.url, collection: collection)
+  end
+end

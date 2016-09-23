@@ -13,4 +13,19 @@ class Resource < ApplicationRecord
   #public_acitivity gem
   include PublicActivity::Common
 
+  # ALGOLIA Search Engine
+  include AlgoliaSearch
+
+  algoliasearch do
+    attribute :title, :content, :uri
+
+    add_attribute :resource_upvotes do
+      get_likes.size
+    end
+
+    attributesToIndex ['title', 'content', 'uri']
+
+    customRanking ['desc(resource_upvotes)']
+  end
+
 end

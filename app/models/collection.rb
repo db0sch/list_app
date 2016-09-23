@@ -17,4 +17,20 @@ class Collection < ApplicationRecord
   include PublicActivity::Common
   # tracked owner: ->(controller, model) { controller && controller.current_user }
 
+  # ALGOLIA Search Engine
+
+  include AlgoliaSearch
+
+  algoliasearch do
+    attribute :title, :tagline, :description
+
+    add_attribute :collection_stars do
+      get_likes.size
+    end
+
+    attributesToIndex ['title', 'tagline', 'description']
+
+    customRanking ['desc(collection_stars)']
+  end
+
 end

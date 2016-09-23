@@ -21,7 +21,9 @@ gem 'acts_as_follower', :github => 'tcocca/acts_as_follower'
 gem 'acts_as_votable', '~> 0.10.0'
 gem "pundit"
 gem 'public_activity'
-
+gem "algoliasearch-rails"
+gem 'rails-assets-algolia-autocomplete.js', source: 'https://rails-assets.org'
+gem 'hogan_assets'
 
 group :development, :test do
   gem 'binding_of_caller'
@@ -32,6 +34,8 @@ group :development, :test do
   gem 'spring'
   gem 'listen', '~> 3.0.5'
   gem 'spring-watcher-listen', '~> 2.0.0'
+
+  gem 'faker'
 end
 
 

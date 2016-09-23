@@ -54,6 +54,14 @@ nav {
                color:    $green;
             }
           }
+          #search-autocomplete-dropdown {
+            position: absolute;
+            top: 100%;
+            z-index: 100;
+            left: 0px;
+            right: auto;
+            display: none;
+          }
           .navbar-search-btn {
             position: absolute;
             top: 3px;

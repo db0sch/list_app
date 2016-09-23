@@ -25,7 +25,8 @@
 
           <!-- Search form -->
           <form action="" class="navbar-search">
-            <input type="text" class="navbar-search-input" placeholder="Discover your next favorite list">
+            <input type="text" class="navbar-search-input" id='search-input' placeholder="Discover your next favorite list">
+            <div id="search-autocomplete-dropdown"></div> <!-- #search-autocomplete-dropdown -->
             <button type="submit" class="navbar-search-btn">
               <i class="fa fa-search"></i>
             </button>
@@ -101,3 +102,44 @@
 </nav>
 
 
+<% content_for(:js) do %>
+  <%= javascript_tag do %>
+    $(document).ready(function() {
+      console.log('hello');
+      var algoliaAppId = "<%= ENV['ALGOLIA_APP_ID'] %>";
+      var algoliaSearchOnlyId = "<%= ENV['ALGOLIA_SEARCH_ONLY_KEY'] %>";
+
+      var client = algoliasearch( algoliaAppId, algoliaSearchOnlyId );
+
+      var template = Hogan.compile('<span class="aa-dropdown-menu{{#datasets}} aa-{{\'with\' or \'without\'}}-{{name}}{{/datasets}}">' +
+      '{{#datasets}}' + '<div class="aa-dataset-{{name}}">' + '{{{header}}}' +
+      '<span class="aa-suggestions">' + '{{#suggestions}}' +
+      '<div class="aa-suggestion">{{{suggestion}}}</div>' +
+      '{{/suggestions}}' + '{{^suggestions}}' + '{{{empty}}}' +
+      '{{/suggestions}}' + '</span>' + '{{{footer}}}' + '</div>' +
+      '{{/datasets}}' + '{{empty}}' + '</span>');
+
+      var index = client.initIndex('Collection');
+
+      autocomplete('#search-input', { hint: false }, [
+        {
+          source: autocomplete.sources.hits(index, { hitsPerPage: 5 }),
+          displayKey: 'title',
+          templates: {
+            footer: '<div class="algolia-branding">Powered by <img src="https://www.algolia.com/assets/algolia128x40.png" /></div>',
+            suggestion: function(suggestion) {
+              return template.render(suggestion);
+            }
+          }
+
+          // templates: {
+          //  dropdownMenu: '#search-autocomplete-dropdown',
+          //  footer: '<div class="branding">Powered by <img src="https://www.algolia.com/assets/algolia128x40.png" /></div>'
+          //}
+        }
+      ]).on('autocomplete:selected', function(event, suggestion, dataset) {
+        console.log(suggestion, dataset);
+      });
+    });
+  <% end %>
+<% end %>
