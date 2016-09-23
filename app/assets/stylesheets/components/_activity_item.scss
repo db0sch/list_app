@@ -1,6 +1,23 @@
 .activity-item {
   display: flex;
-  border: 1px solid $light-gray;
-  margin: 5px 0;
-  background-color: white;
+  color: $dark-gray;
+  padding: 15px 5px;
+  border-bottom: 1px solid lightgray;
+  a {
+    text-decoration: none;
+    color: $green;
+  }
+  .activity-action {
+    margin: 0 3px;
+    flex: 0 0 5%;
+    color: $medium-gray;
+  }
+  .activity-details {
+    flex: 1 1 95%;
+    margin: 0 3px;
+    .activity-time {
+      color: $medium-gray;
+      font-size: 0.8em;
+    }
+  }
 }
