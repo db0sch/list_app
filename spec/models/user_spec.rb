@@ -51,13 +51,20 @@ RSpec.describe User, type: :model do
     }
 
     it 'can be followed by other user' do
-      subject.save
-      interesting_user.save
       interested_user.follow(subject)
       follow = interested_user.following?(subject)
       expect(follow).to be true
       followed = subject.followed_by?(interested_user)
       expect(followed).to be true
+    end
+
+    it 'can be unfollowed by a user' do
+      interested_user.follow(subject)
+      follow = interested_user.following?(subject)
+      expect(follow).to be true
+      interested_user.stop_following(subject)
+      follow = interested_user.following?(subject)
+      expect(follow).to be false
     end
 
     it 'can follow other users' do
@@ -68,12 +75,30 @@ RSpec.describe User, type: :model do
       expect(followed).to be true
     end
 
+    it 'can unfollow a user' do
+      subject.follow(interesting_user)
+      follow = subject.following?(interesting_user)
+      expect(follow).to be true
+      subject.stop_following(interesting_user)
+      follow = subject.following?(interesting_user)
+      expect(follow).to be false
+    end
+
     it 'can follow collections' do
       subject.follow(collection)
       follow = subject.following?(collection)
       expect(follow).to be true
       followed = collection.followed_by?(subject)
       expect(followed).to be true
+    end
+
+    it 'can unfollow a collection' do
+      subject.follow(collection)
+      follow = subject.following?(collection)
+      expect(follow).to be true
+      subject.stop_following(collection)
+      follow = subject.following?(collection)
+      expect(follow).to be false
     end
   end
 

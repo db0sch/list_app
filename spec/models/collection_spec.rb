@@ -37,4 +37,29 @@ RSpec.describe Collection, type: :model do
     it { should have_many(:comments) }
     it { should have_many(:resources) }
   end
+
+  describe "Act_as_follower/followable" do
+    let(:user) { create(:user) }
+
+    subject {
+      create(:collection)
+    }
+
+    it "can be followed by a user" do
+      user.follow(subject)
+      follow = user.following?(subject)
+      expect(follow).to be true
+      followed = subject.followed_by?(user)
+      expect(followed).to be true
+    end
+
+    it "can be unfollowed by a user" do
+      user.follow(subject)
+      follow = user.following?(subject)
+      expect(follow).to be true
+      user.stop_following(subject)
+      follow = user.following?(subject)
+      expect(follow).to be false
+    end
+  end
 end
