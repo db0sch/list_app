@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-
   subject {
     build(:user)
   }
@@ -33,7 +32,6 @@ RSpec.describe User, type: :model do
       subject.bio = nil
       expect(subject).to be_valid
     end
-
   end
 
   describe "Associations" do
@@ -41,6 +39,42 @@ RSpec.describe User, type: :model do
     it { should have_many(:comments) }
     it { should have_many(:resources) }
     it { should have_many(:follows) }
+  end
+
+  describe "Act_as_followable/followeer" do
+    let(:collection) { create(:collection) }
+    let(:interesting_user) { create(:user) }
+    let(:interested_user) { create(:user) }
+
+    subject {
+      create(:user)
+    }
+
+    it 'can be followed by other user' do
+      subject.save
+      interesting_user.save
+      interested_user.follow(subject)
+      follow = interested_user.following?(subject)
+      expect(follow).to be true
+      followed = subject.followed_by?(interested_user)
+      expect(followed).to be true
+    end
+
+    it 'can follow other users' do
+      subject.follow(interesting_user)
+      follow = subject.following?(interesting_user)
+      expect(follow).to be true
+      followed = interesting_user.followed_by?(subject)
+      expect(followed).to be true
+    end
+
+    it 'can follow collections' do
+      subject.follow(collection)
+      follow = subject.following?(collection)
+      expect(follow).to be true
+      followed = collection.followed_by?(subject)
+      expect(followed).to be true
+    end
   end
 
 end
