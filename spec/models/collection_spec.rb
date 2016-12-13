@@ -62,4 +62,27 @@ RSpec.describe Collection, type: :model do
       expect(follow).to be false
     end
   end
+
+  describe 'act_as_votable' do
+
+    let(:user) { create(:user) }
+    subject { create(:collection) }
+
+    it 'can be upvoted by users' do
+      user.upvotes subject
+      voted = subject.vote_registered?
+      expect(voted).to be true
+      upvote = user.voted_up_on? subject
+      expect(upvote).to be true
+    end
+
+    it 'can be unvoted by a user' do
+      user.upvotes subject
+      voted = subject.vote_registered?
+      expect(voted).to be true
+      subject.unvote_by user
+      upvote = user.voted_up_on? subject
+      expect(upvote).to be false
+    end
+  end
 end

@@ -102,4 +102,47 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe 'act as voter' do
+    let(:collection) { create(:collection) }
+    let(:resource) { create(:resource) }
+
+    subject {
+      create(:user)
+    }
+
+    it 'can upvote a collection' do
+      subject.upvotes collection
+      voted = collection.vote_registered?
+      expect(voted).to be true
+      upvote = subject.voted_up_on? collection
+      expect(upvote).to be true
+    end
+
+    it 'can unvote a collection' do
+      subject.upvotes collection
+      voted = collection.vote_registered?
+      expect(voted).to be true
+      collection.unvote_by subject
+      upvote = subject.voted_up_on? collection
+      expect(upvote).to be false
+    end
+
+    it 'can upvote a resource' do
+      subject.upvotes resource
+      voted = resource.vote_registered?
+      expect(voted).to be true
+      upvote = subject.voted_up_on? resource
+      expect(upvote).to be true
+    end
+
+    it 'can unvote a resource' do
+      subject.upvotes resource
+      voted = resource.vote_registered?
+      expect(voted).to be true
+      resource.unvote_by subject
+      upvote = subject.voted_up_on? resource
+      expect(upvote).to be false
+    end
+  end
+
 end
