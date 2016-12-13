@@ -1,7 +1,15 @@
 FactoryGirl.define do
+  sequence :email do |n|
+    "john.doe_#{n}@example.com"
+  end
+
+  sequence :name do |n|
+    "John Doe #{n}"
+  end
+
   factory :user do
-    name "John Doe"
-    email "john.doe@gmail.com"
+    name
+    email
     password "password"
     bio "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
   end
@@ -21,7 +29,7 @@ FactoryGirl.define do
   end
 
   factory :comment do
-    resource
+    commentable factory: :resource
     user
     content "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
   end
