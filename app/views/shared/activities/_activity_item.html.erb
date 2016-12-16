@@ -5,7 +5,7 @@
         <%= render 'shared/activities/activities_icons', activity: activity %>
       </div> <!-- .activity-actions -->
       <div class="activity-details">
-        <%= link_to activity.owner.name, activity.owner if activity.owner %>
+        <%= link_to activity.owner.username, activity.owner if activity.owner %>
         <%= render_activity activity %>
         <span class="activity-time"><%= time_ago_in_words(activity.created_at) + " ago" %></span>
       </div> <!-- .activity-details -->

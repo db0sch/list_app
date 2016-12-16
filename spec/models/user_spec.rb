@@ -10,8 +10,18 @@ RSpec.describe User, type: :model do
       expect(subject).to be_valid
     end
 
-    it "is not valid without a name" do
-      subject.name = nil
+    it "is not valid without a username" do
+      subject.username = nil
+      expect(subject).to_not be_valid
+    end
+
+    it 'is not valid without a first_name' do
+      subject.first_name = nil
+      expect(subject).to_not be_valid
+    end
+
+    it 'is not valid without a last_name' do
+      subject.last_name = nil
       expect(subject).to_not be_valid
     end
 
@@ -142,6 +152,13 @@ RSpec.describe User, type: :model do
       resource.unvote_by subject
       upvote = subject.voted_up_on? resource
       expect(upvote).to be false
+    end
+  end
+
+  describe "#full_name" do
+    it 'should return the full name concatenated' do
+      fullname = "#{subject.first_name} #{subject.last_name}"
+      expect(subject.full_name == fullname).to be true
     end
   end
 
