@@ -44,6 +44,13 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe "Admin" do
+    it 'is not admin by default' do
+      subject.save
+      expect(subject.admin).to be false
+    end
+  end
+
   describe "Associations" do
     it { should have_many(:collections) }
     it { should have_many(:comments) }
