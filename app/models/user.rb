@@ -5,7 +5,9 @@ class User < ApplicationRecord
 
 
   # in order to put some validation of uniqueness on the name... We shall edit the devise form to add the name field for ex.
-  validates :name, presence: true, uniqueness: true
+  validates :username, presence: true, uniqueness: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
 
   # acts_as_follower gem in order to allow users to follow another user.
   acts_as_follower # 'acts_as_follower' enables users to follow someone/something.
@@ -13,6 +15,10 @@ class User < ApplicationRecord
 
   # acts_as_votable gem in order to upvote/downvote a collection or a resources
   acts_as_voter
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 
 
   # Include default devise modules. Others available are:
