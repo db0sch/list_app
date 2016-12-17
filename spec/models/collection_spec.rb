@@ -32,6 +32,31 @@ RSpec.describe Collection, type: :model do
 
   end
 
+  describe "Status" do
+    it "is 'public' by default" do
+      expect(subject.status == 'is_public').to be true
+      expect(subject.is_public?).to be true
+    end
+
+    it 'can be "open"' do
+      subject.is_open!
+      expect(subject.status == 'is_open').to be true
+      expect(subject.is_open?).to be true
+    end
+
+    it 'can be "public"' do
+      subject.is_public!
+      expect(subject.status == 'is_public').to be true
+      expect(subject.is_public?).to be true
+    end
+
+    it 'can be "private"' do
+      subject.is_private!
+      expect(subject.status == 'is_private').to be true
+      expect(subject.is_private?).to be true
+    end
+  end
+
   describe "Associations" do
     it { should belong_to(:user) }
     it { should have_many(:comments) }
