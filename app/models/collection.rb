@@ -17,4 +17,6 @@ class Collection < ApplicationRecord
   include PublicActivity::Common
   # tracked owner: ->(controller, model) { controller && controller.current_user }
 
+  # STATUS => Enumerated datatypes (stored as Integer in the database)
+  enum status: { is_public: 0, is_open: 1, is_private: 2 }
 end

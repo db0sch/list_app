@@ -58,7 +58,7 @@ RSpec.describe User, type: :model do
     it { should have_many(:follows) }
   end
 
-  describe "Act_as_followable/followeer" do
+  describe "Act_as_followable/follower" do
     let(:collection) { create(:collection) }
     let(:interesting_user) { create(:user) }
     let(:interested_user) { create(:user) }
