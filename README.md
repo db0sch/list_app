@@ -58,6 +58,41 @@ For the following system, we use this gem [acts_as_follower](https://github.com/
 For the votation system (upvote...), we use this gem [acts_as_votable](https://github.com/ryanto/acts_as_votable)
 => There is probably a cache column to add to the votable models, to increase performance, on the votation system. Cf. gem's doc.
 
+## Collections
+
+### Status
+For the collections status, we used the enumerated types.
+An integer is stored in the database in the column 'status'.
+And interpreted by the enum methods in the model Collection, so that:
+* 1 - `:is_public`
+* 2 - `:is_open`
+* 3 - `:is_private`
+
+At first, we would like to use `:public` and `:private`, but the enum methods generates class and instance methods with this names that conflicted with active record.
+
+Now, the following methods are available:
+```
+# Query method
+collection.ìs_public?
+collection.is_open?
+collection.is_private?
+
+# Action method
+collection.ìs_public!
+collection.is_open!
+collection.is_private!
+
+# List of statuses and their corresponding values in the database.
+Collection.statuses
+```
+
+There should be some scope methods as well. Must dig into docs and posts for more information.
+Some resources :
+[Enumerated Types with ActiveRecord and PostgreSQL (SitePoint)](https://www.sitepoint.com/enumerated-types-with-activerecord-and-postgresql/)
+[What's New in Edge Rails: Active Record enums (ThoughtBot)](https://robots.thoughtbot.com/whats-new-in-edge-rails-active-record-enum)
+[ActiveRecord::Enum](http://edgeapi.rubyonrails.org/classes/ActiveRecord/Enum.html)
+
+
 ---
 
 Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
