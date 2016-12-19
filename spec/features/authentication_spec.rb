@@ -108,8 +108,15 @@ RSpec.feature "Authentication", type: :feature do
   end
 
   scenario "User can sign out" do
-    # visit "/users/edit"
-    # test with a user, change the name, and check if the name is different after.
+    user = create(:user)
+    login_as(user, :scope => :user)
+
+    visit "/"
+
+    find("#navbar-wagon-menu").click
+    click_link "LOG OUT", match: :prefer_exact
+
+    expect(page).to have_text("Signed out successfully.")
   end
 
 end
