@@ -10,6 +10,12 @@ en:
       # html: '<abbr title="required">*</abbr>'
     error_notification:
       default_message: "Please review the problems below:"
+    options:
+      collection:
+        status:
+          is_public: "Public"
+          is_open: "Open"
+          is_private: "Private"
     # Examples
     # labels:
     #   defaults:

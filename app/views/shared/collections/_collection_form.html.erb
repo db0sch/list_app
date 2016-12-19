@@ -1,5 +1,7 @@
 <%= simple_form_for collection do |f| %>
   <%= f.input :title %>
+  <%= f.input :tagline %>
   <%= f.input :description %>
+  <%= f.input :status, collection: Collection.statuses.map { |k, v| k.to_sym }, as: :radio_buttons, selected: Collection.statuses.keys.first, prompt: :translate %>
   <%= f.submit "create a collection", class: "btn btn-primary" %>
 <% end %>
