@@ -92,6 +92,16 @@ Some resources :
 [What's New in Edge Rails: Active Record enums (ThoughtBot)](https://robots.thoughtbot.com/whats-new-in-edge-rails-active-record-enum)
 [ActiveRecord::Enum](http://edgeapi.rubyonrails.org/classes/ActiveRecord/Enum.html)
 
+## Testing (RSpec)
+
+For testing, we use RSpec framework.
+
+To launch test: `bundle exec rspec`
+You can also trigger specific test, like `bundle exec rspec spec/models` for instance.
+See `rspec-rails` doc for more information: [rspec-rails](https://github.com/rspec/rspec-rails)
+
+Each new feature and new code must be tested before any merge into the master branch.
+If you notice some legacy code without any test, please pull a branch and write the specs, then pull request. I'll appreciate it.
 
 ---
 
