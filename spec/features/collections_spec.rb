@@ -63,13 +63,11 @@ RSpec.feature "Collections", type: :feature do
     expect(page).to have_text(status)
   end
 
-  scenario "user can delete a collection", js: true do
+  scenario "user can delete a collection (if he is the author)", js: true do
     user = create(:user)
     login_as(user, :scope => :user)
 
     collection = create(:collection, user: user)
-
-    id = collection.id
 
     visit "/collections/#{collection.id}"
 
@@ -79,4 +77,66 @@ RSpec.feature "Collections", type: :feature do
     end
     expect(page).to_not have_text(collection.title)
   end
+
+  scenario "user cannot delete a collection (if he is not the author)", js: true do
+    user = create(:user)
+    login_as(user, :scope => :user)
+
+    collection = create(:collection)
+
+    visit "/collections/#{collection.id}"
+
+    # should not be able to edit or delete a collection that the user has not created.
+    # should not be able to even see the buttons for delete and edit
+  end
+
+  scenario "a visitor (non-logged in) can see a collection if it's public or open" do
+    # visitor not logged in
+    # can access and view a collection
+    # but can't edit it or delete it
+  end
+
+  scenario "a visitor (non-logged in) can't see a collection if it's private" do
+    # user not logged in
+    # can't access or view a collection if status: is_private
+    # should say you're not allowed
+  end
+
+  scenario "a user (logged in) can see a collection if it's public or open" do
+    # user logged in
+    # can access and view a collection
+    # but can't edit it or delete it
+  end
+
+  scenario "a user (logged in) can interact with a collection if it's public" do
+    # user logged in
+    # can access and view a collection
+    # can upvote resources
+    # post comments
+  end
+
+  scenario "a user (logged in) can interact with a collection if it's open" do
+    # user logged in
+    # can access and view a collection
+    # can upvote resources
+    # post comments
+    # add a new resource to the collection
+  end
+
+  scenario "a user (logged in) can star a collection (open or public)" do
+    # user logged in
+    # can access and view a collection
+    # can upvote resources
+    # post comments
+    # add a new resource to the collection
+  end
+
+  scenario "a user (logged in) can follow a collection (open or public)" do
+    # user logged in
+    # can access and view a collection
+    # can upvote resources
+    # post comments
+    # add a new resource to the collection
+  end
+
 end
