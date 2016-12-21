@@ -33,6 +33,7 @@
 
 <div class="collection-content">
   <div class="container">
+    <div class="collection-status">Status: <%= t("collection.status.#{@collection.status}") %></div> <!-- .collection-status -->
     <div class="collection-description">
       <h4>Description:</h4>
       <p><%= @collection.description %></p>
