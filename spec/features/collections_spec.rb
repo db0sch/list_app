@@ -1,8 +1,11 @@
 require 'rails_helper'
 
-RSpec.feature "CreateCollections", type: :feature do
+RSpec.feature "Collections", type: :feature do
   scenario "user can't create collection if not logged in" do
-
+    visit "/collections/new"
+    expect(page).to have_content('You need to sign in or sign up before continuing.')
+    expect(page).to_not have_content('Title')
+    expect(page).to_not have_content('create a collection')
   end
 
   scenario "user can create new collection (list)" do
@@ -36,7 +39,10 @@ RSpec.feature "CreateCollections", type: :feature do
 
     collection = create(:collection, user: user)
 
-    visit "/collections/#{collection.id}/edit"
+    # visit "/collections/#{collection.id}/edit"
+    visit "/collections/#{collection.id}"
+
+    click_link "edit collection"
 
     title = "New title for testing, hey"
     description = "Hello, I love you, can you tell me your name?"
@@ -55,5 +61,22 @@ RSpec.feature "CreateCollections", type: :feature do
     expect(page).to have_link("add a resource")
     expect(page).to have_text("Comments")
     expect(page).to have_text(status)
+  end
+
+  scenario "user can delete a collection", js: true do
+    user = create(:user)
+    login_as(user, :scope => :user)
+
+    collection = create(:collection, user: user)
+
+    id = collection.id
+
+    visit "/collections/#{collection.id}"
+
+    expect(page).to have_text("delete this collection")
+    accept_alert do
+      click_link "delete this collection"
+    end
+    expect(page).to_not have_text(collection.title)
   end
 end
