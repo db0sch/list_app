@@ -110,4 +110,10 @@ RSpec.describe Collection, type: :model do
       expect(upvote).to be false
     end
   end
+
+  describe 'scope' do
+    it 'can return only public collection' do
+
+    end
+  end
 end

@@ -38,7 +38,6 @@ RSpec.feature "Collections", type: :feature do
     login_as(user, :scope => :user)
 
     collection = create(:collection, user: user)
-
     # visit "/collections/#{collection.id}/edit"
     visit "/collections/#{collection.id}"
 

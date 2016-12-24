@@ -1,47 +1,34 @@
+require 'faker'
+
 FactoryGirl.define do
-  sequence :email do |n|
-    "john.doe_#{n}@example.com"
-  end
-
-  sequence :first_name do |n|
-    "John"
-  end
-
-  sequence :last_name do |n|
-    "Doe"
-  end
-
-  sequence :username do |n|
-    "jdo_#{n}"
-  end
 
   factory :user do
-    first_name
-    last_name
-    username
-    email
-    password "password"
-    bio "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+    first_name { Faker::Name.first_name }
+    last_name { Faker::Name.last_name }
+    username { Faker::Internet.user_name("#{first_name} #{last_name}", %w(. _ -)) }
+    email { Faker::Internet.safe_email("#{first_name}_#{last_name}") }
+    password Faker::Internet.password
+    bio Faker::Lorem.sentence
   end
 
   factory :collection do
     user
-    title "My favourite bars"
-    tagline "A curated list of all the bars I like in Tokyo"
-    description "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+    title Faker::Book.title
+    tagline Faker::Lorem.sentence
+    description Faker::Hipster.paragraph
   end
 
   factory :resource do
     collection
-    title "Le super bar"
-    content "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
-    uri "www.google.fr"
+    title Faker::App.name
+    content Faker::Lorem.paragraph
+    uri Faker::Internet.url
   end
 
   factory :comment do
     commentable factory: :resource
     user
-    content "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+    content Faker::Lorem.paragraph
   end
 
   factory :follow do

@@ -7,8 +7,6 @@ RSpec.describe Resource, type: :model do
     build(:resource)
   }
 
-
-
   describe "Validations" do
     it 'is valid with valid arguments' do
       expect(subject).to be_valid
@@ -25,8 +23,8 @@ RSpec.describe Resource, type: :model do
       expect(subject).to_not be_valid
     end
 
-    it 'is not valid with a title too short (< 5 chars) or too long (> 100 chars)' do
-      subject.title = "abcd"
+    it 'is not valid with a title too short (< 0 chars) or too long (> 100 chars)' do
+      subject.title = ""
       expect(subject).to_not be_valid
       subject.title = "a" * 101
       expect(subject).to_not be_valid
