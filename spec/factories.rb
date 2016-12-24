@@ -13,22 +13,23 @@ FactoryGirl.define do
 
   factory :collection do
     user
-    title Faker::Book.title
-    tagline Faker::Lorem.sentence
+    title { Faker::Book.title }
+    tagline { Faker::Lorem.sentence }
     description Faker::Hipster.paragraph
+    status { [:is_public, :is_public, :is_public, :is_open, :is_private].sample }
   end
 
   factory :resource do
     collection
-    title Faker::App.name
-    content Faker::Lorem.paragraph
-    uri Faker::Internet.url
+    title { Faker::App.name }
+    content { Faker::Lorem.paragraph }
+    uri { Faker::Internet.url }
   end
 
   factory :comment do
     commentable factory: :resource
     user
-    content Faker::Lorem.paragraph
+    content { Faker::Lorem.paragraph }
   end
 
   factory :follow do
