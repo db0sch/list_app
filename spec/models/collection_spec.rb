@@ -33,6 +33,11 @@ RSpec.describe Collection, type: :model do
   end
 
   describe "Status" do
+
+    subject {
+      create(:collection)
+    }
+
     it "is 'public' by default" do
       expect(subject.status == 'is_public').to be true
       expect(subject.is_public?).to be true
@@ -112,8 +117,37 @@ RSpec.describe Collection, type: :model do
   end
 
   describe 'scope' do
-    it 'can return only public collection' do
 
+    before {
+      5.times { create(:collection, status: :is_public) }
+      2.times { create(:collection, status: :is_open) }
+      2.times { create(:collection, status: :is_private) }
+    }
+
+    it 'can return only public collection' do
+      collections = Collection.is_public
+      all_public = collections.all? { |collection| collection.status == "is_public" }
+      expect(all_public).to be true
+    end
+
+    it 'can return only open collections' do
+      collections = Collection.is_open
+      all_public = collections.all? { |collection| collection.status == "is_open" }
+      expect(all_public).to be true
+    end
+
+    it 'can return only private collections' do
+      collections = Collection.is_private
+      all_public = collections.all? { |collection| collection.status == "is_private" }
+      expect(all_public).to be true
+    end
+
+    it 'can return open and public collections at the same time' do
+      collections = Collection.not_private
+      all_public = collections.all? do
+        |c| c.status == "is_public" || c.status == "is_open"
+      end
+      expect(all_public).to be true
     end
   end
 end

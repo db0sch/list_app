@@ -20,6 +20,9 @@ class Collection < ApplicationRecord
   # STATUS => Enumerated datatypes (stored as Integer in the database)
   enum status: { is_public: 0, is_open: 1, is_private: 2 }
 
+  # Scopes
+  scope :not_private, -> { where(status: [:is_open, :is_public]) }
+
   def self.statuses_with_symbols
     statuses.map { |k, v| [k.to_sym, v] }.to_h
   end
