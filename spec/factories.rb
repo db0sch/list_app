@@ -16,7 +16,6 @@ FactoryGirl.define do
     title { Faker::Book.title }
     tagline { Faker::Lorem.sentence }
     description Faker::Hipster.paragraph
-    status { [:is_public, :is_public, :is_public, :is_open, :is_private].sample }
   end
 
   factory :resource do
