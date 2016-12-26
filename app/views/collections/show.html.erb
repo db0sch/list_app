@@ -41,7 +41,9 @@
 
     <div class="collection-resources">
       <h4>Resources</h4>
-      <%= link_to "add a resource", new_collection_resource_path(@collection), class:"btn btn-primary", id:"resource-add-btn", remote: true%>
+      <% if policy(@collection).edit? %>
+        <%= link_to "add a resource", new_collection_resource_path(@collection), class:"btn btn-primary", id:"resource-add-btn", remote: true %>
+      <% end %>
       <% if policy(@collection).edit? %>
         <%= link_to "edit collection", edit_collection_path(@collection) %>
       <% end %>

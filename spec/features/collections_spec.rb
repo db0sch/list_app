@@ -103,10 +103,43 @@ RSpec.feature "Collections", type: :feature do
     # should say you're not allowed
   end
 
-  scenario "a user (logged in) can see a collection if it's public or open" do
+  scenario "a user (logged in) can see a collection (public, open or private)" do
     # user logged in
-    # can access and view a collection
-    # but can't edit it or delete it
+    user_1 = create(:user)
+    login_as(user_1, :scope => :user)
+
+    user_2 = create(:user)
+
+    collection = create(:collection, user: user_2)
+    collection_2 = create(:collection, user: user_2, status: :is_open)
+    collection_3 = create(:collection, user: user_2, status: :is_private)
+
+    # can access and view a collection if it's public
+    visit "/collections/#{collection.id}"
+    expect(page).to have_text(collection.title)
+    expect(page).to have_text(collection.tagline)
+    expect(page).to have_text(collection.description)
+    expect(page).to_not have_text("delete this collection")
+    expect(page).to_not have_text("edit this collection")
+    expect(page).to_not have_text("add a resource")
+
+    # can access and view a collection if it's open
+    visit "/collections/#{collection_2.id}"
+    expect(page).to have_text(collection_2.title)
+    expect(page).to have_text(collection_2.tagline)
+    expect(page).to have_text(collection_2.description)
+    expect(page).to_not have_text("delete this collection")
+    expect(page).to_not have_text("edit this collection")
+    expect(page).to_not have_text("add a resource")
+
+    # can access and view a collection if it's open
+    visit "/collections/#{collection_3.id}"
+    expect(page).to have_text(collection_3.title)
+    expect(page).to have_text(collection_3.tagline)
+    expect(page).to have_text(collection_3.description)
+    expect(page).to_not have_text("delete this collection")
+    expect(page).to_not have_text("edit this collection")
+    expect(page).to_not have_text("add a resource")
   end
 
   scenario "a user (logged in) can interact with a collection if it's public" do

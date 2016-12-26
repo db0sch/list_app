@@ -22,9 +22,14 @@ class Collection < ApplicationRecord
 
   # Scopes
   scope :not_private, -> { where(status: [:is_open, :is_public]) }
+  scope :created_by, ->(user) { where(user: user) }
 
   def self.statuses_with_symbols
     statuses.map { |k, v| [k.to_sym, v] }.to_h
+  end
+
+  def is_public_or_open?
+    return !is_private?
   end
 
 end
