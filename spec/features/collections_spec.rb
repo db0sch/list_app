@@ -77,16 +77,18 @@ RSpec.feature "Collections", type: :feature do
     expect(page).to_not have_text(collection.title)
   end
 
-  scenario "user cannot delete a collection (if he is not the author)", js: true do
-    user = create(:user)
-    login_as(user, :scope => :user)
+  scenario "user cannot delete or edit a collection (if he is not the author)", js: true do
+    user_1 = create(:user)
+    login_as(user_1, :scope => :user)
 
-    collection = create(:collection)
+    user_2 = create(:user)
+
+    collection = create(:collection, user: user_2)
 
     visit "/collections/#{collection.id}"
 
-    # should not be able to edit or delete a collection that the user has not created.
-    # should not be able to even see the buttons for delete and edit
+    expect(page).to_not have_text("delete this collection")
+    expect(page).to_not have_text("edit this collection")
   end
 
   scenario "a visitor (non-logged in) can see a collection if it's public or open" do
