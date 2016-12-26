@@ -142,10 +142,24 @@ RSpec.feature "Collections", type: :feature do
     expect(page).to_not have_text("add a resource")
   end
 
-  scenario "a user (logged in) can interact with a collection if it's public" do
+  scenario "a user (logged in) can interact with a collection if it's public", js: true do
     # user logged in
+    user_1 = create(:user)
+    login_as(user_1, :scope => :user)
+
+    user_2 = create(:user)
+
+    collection = create(:collection, user: user_2)
+    resource = create(:resource, collection: collection)
     # can access and view a collection
+    visit "/collections/#{collection.id}"
     # can upvote resources
+    upvote_before = find_link(class: ['upvote-btn'], :visible => :all).text.to_i
+    click_link(class: ['upvote-btn'])
+    # it seems the click_link doesn't trigger the ajax call
+    p user_1.voted_up_on? resource
+    p resource.get_likes
+    expect(user_1.voted_up_on? resource).to be true
     # post comments
   end
 

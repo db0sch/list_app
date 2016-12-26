@@ -14,6 +14,7 @@ class ResourcesController < ApplicationController
 
   def new
     @resource = Resource.new
+    @resource.collection = @collection
     authorize @resource
   end
 

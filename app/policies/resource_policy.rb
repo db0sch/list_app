@@ -11,6 +11,7 @@ class ResourcePolicy < ApplicationPolicy
 
   def create?
     true
+    # CollectionPolicy.new(record.collection.user, record.collection).edit?
   end
 
   def update?
