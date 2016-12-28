@@ -4,7 +4,7 @@
       <div class="collection-actions">
         <div class="collection-favorite <%= 'collection-favorite-activated' if current_user.voted_up_on?(@collection) %>" id="collection-<%= @collection.id %>">
           <p>Star</p>
-          <%= link_to like_collection_path(@collection), method: :put, remote: true do %>
+          <%= link_to like_collection_path(@collection), method: :put, remote: true, id: "like-collection-#{@collection.id}" do %>
             <%= current_user.voted_up_on?(@collection) ? icon('star') : icon('star-o') %>
           <% end %>
         </div>

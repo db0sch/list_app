@@ -45,9 +45,10 @@ class CollectionsController < ApplicationController
   def like
     # refacto the IF ELSE statement in order to create activity only on the like (and not the dislike)
     @user = current_user
-    @collection.liked_by current_user
-    if @collection.vote_registered?
+    if @user.liked? @collection
       @collection.disliked_by current_user
+    else
+      @user.likes @collection
     end
     @collection.create_activity :like, owner: current_user
     respond_to do |format|

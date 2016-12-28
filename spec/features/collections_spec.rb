@@ -146,36 +146,60 @@ RSpec.feature "Collections", type: :feature do
     # user logged in
     user_1 = create(:user)
     login_as(user_1, :scope => :user)
-
     user_2 = create(:user)
-
     collection = create(:collection, user: user_2)
     resource = create(:resource, collection: collection)
     # can access and view a collection
     visit "/collections/#{collection.id}"
     # can upvote resources
     upvote_before = find_link(class: ['upvote-btn'], :visible => :all).text.to_i
+    upvote_link = find_link(class: ['upvote-btn'], :visible => :all)
     click_link(class: ['upvote-btn'])
-    # it seems the click_link doesn't trigger the ajax call
-    p user_1.voted_up_on? resource
-    p resource.get_likes
+    # capybara/poltergeist need to wait 2 sec (or maybe less) for the ajax call (turbolink) to come back.
+    sleep 2
     expect(user_1.voted_up_on? resource).to be true
     # post comments
+    comment = 'Lorem ipsium Lorem ipsium Lorem ipsium Lorem ipsium'
+    fill_in 'Content', with: comment
+    click_on "add a comment"
+    expect(page).to have_text(comment)
   end
 
-  scenario "a user (logged in) can interact with a collection if it's open" do
+  scenario "a user (logged in) can interact with a collection if it's open", js: true do
     # user logged in
+    user_1 = create(:user)
+    login_as(user_1, :scope => :user)
+    user_2 = create(:user)
+    collection = create(:collection, user: user_2, status: :is_open)
+    resource = create(:resource, collection: collection)
     # can access and view a collection
+    visit "/collections/#{collection.id}"
     # can upvote resources
+    upvote_before = find_link(class: ['upvote-btn'], :visible => :all).text.to_i
+    upvote_link = find_link(class: ['upvote-btn'], :visible => :all)
+    click_link(class: ['upvote-btn'])
+    # capybara/poltergeist need to wait 2 sec (or maybe less) for the ajax call (turbolink) to come back.
+    sleep 2
+    expect(user_1.voted_up_on? resource).to be true
     # post comments
-    # add a new resource to the collection
+    comment = 'Lorem ipsium Lorem ipsium Lorem ipsium Lorem ipsium'
+    fill_in 'Content', with: comment
+    click_on "add a comment"
+    expect(page).to have_text(comment)
   end
 
-  scenario "a user (logged in) can star a collection (open or public)" do
+  scenario "a user (logged in) can star a collection (open or public)", js: true do
     # user logged in
+    user_1 = create(:user)
+    login_as(user_1, :scope => :user)
+    user_2 = create(:user)
+    collection = create(:collection, user: user_2)
     # can access and view a collection
-    # can upvote resources
-    # post comments
+    visit "/collections/#{collection.id}"
+    like_link_class = "like-collection-#{collection.id}"
+    click_link like_link_class
+    vote = user_1.voted_up_on? collection
+    expect(vote).to be true
     # add a new resource to the collection
   end
 
