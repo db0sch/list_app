@@ -1,6 +1,7 @@
 class ResourcesController < ApplicationController
   before_action :set_resource, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
   before_action :set_collection, only: [:new, :create, :edit, :update, :destroy]
+  skip_before_action :authenticate_user!, only: [ :show ]
 
   # CRUD Actions
   def index
@@ -14,6 +15,7 @@ class ResourcesController < ApplicationController
 
   def new
     @resource = Resource.new
+    @resource.collection = @collection
     authorize @resource
   end
 

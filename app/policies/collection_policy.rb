@@ -10,7 +10,9 @@ class CollectionPolicy < ApplicationPolicy
   end
 
   def show?
+    # everyone can access a collection (whether it's public, open or private)
     true
+    # (record.is_public_or_open? == true) || (record.user == user)
   end
 
   def create?

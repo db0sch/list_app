@@ -7,6 +7,27 @@ a resource sharing app
 Name : Minimal
 Url : mnmlist.co / mnmlist.io
 
+## Inspiration
+[Lists are the new search | ben-evans.com)](http://ben-evans.com/benedictevans/2016/1/31/lists-are-the-new-search)
+[Lists | avc.com](http://avc.com/2015/11/lists-2/)
+
+It seems that we lack curation when it comes to access content on the web.
+We have Google.com which allows us to search for a specific content. It returns a list of result.
+The websites with the best referencing strategies come up first.
+But it doesn't say anything whereas this content is better and more accurate than the other.
+And we still have to do the right search (knowing how to trick google) to get the best results.
+For some reasons, lists are quite convenient for human.
+Instead of having an infinite choices (the result of search), we have 5, 10, 20 results, curated by human or machine (ML), and that's all.
+It's all about curation and relevance.
+It narrows the choice that the user has to make, by leveraging the work of others (who did the hard work of curating these contents). User gains time and relevance. Easier choice.
+
+Product Hunt is doing just that with its collection and upvote system => You can have a selection of the best tools for collaboration for ex.
+Lots and lots of other fields to apply this concept.
+Big question (cf. avc.com): will it be vertical (field by field)? or horizontal (one list platform which can fit to all fields)?
+Example of vertical: list for retails (a platform dedicated to curate list for retail items)
+Example of horizontal: A list platform, topic agnostic, on which you can create list for everything (best movies, sneakers, artist, news article about a specific topic ...)
+
+
 ## What can you do with it? What do we want to achieve?
 Create collection of links about a specific subject.
 Each collection has one :
