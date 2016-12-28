@@ -93,14 +93,46 @@ RSpec.feature "Collections", type: :feature do
 
   scenario "a visitor (non-logged in) can see a collection if it's public or open" do
     # visitor not logged in
+    user = create(:user)
+    collection = create(:collection, user: user)
     # can access and view a collection
+    visit "/collections/#{collection.id}"
+    expect(page).to have_text(collection.title)
+    expect(page).to have_text(collection.tagline)
+    expect(page).to have_text(collection.description)
     # but can't edit it or delete it
+    expect(page).to_not have_text("delete this collection")
+    expect(page).to_not have_text("edit this collection")
+    expect(page).to_not have_text("add a resource")
+
+    # same spec with collection status: is_open
+    # visitor not logged in
+    user = create(:user)
+    collection2 = create(:collection, user: user, status: :is_open)
+    # can access and view a collection
+    visit "/collections/#{collection2.id}"
+    expect(page).to have_text(collection2.title)
+    expect(page).to have_text(collection2.tagline)
+    expect(page).to have_text(collection2.description)
+    # but can't edit it or delete it
+    expect(page).to_not have_text("delete this collection")
+    expect(page).to_not have_text("edit this collection")
+    expect(page).to_not have_text("add a resource")
   end
 
   scenario "a visitor (non-logged in) can't see a collection if it's private" do
-    # user not logged in
-    # can't access or view a collection if status: is_private
-    # should say you're not allowed
+     # visitor not logged in
+    user = create(:user)
+    collection = create(:collection, user: user, status: :is_private)
+    # can access and view a collection
+    visit "/collections/#{collection.id}"
+    expect(page).to have_text(collection.title)
+    expect(page).to have_text(collection.tagline)
+    expect(page).to have_text(collection.description)
+    # but can't edit it or delete it
+    expect(page).to_not have_text("delete this collection")
+    expect(page).to_not have_text("edit this collection")
+    expect(page).to_not have_text("add a resource")
   end
 
   scenario "a user (logged in) can see a collection (public, open or private)" do
@@ -198,17 +230,40 @@ RSpec.feature "Collections", type: :feature do
     visit "/collections/#{collection.id}"
     like_link_class = "like-collection-#{collection.id}"
     click_link like_link_class
+    sleep 1
     vote = user_1.voted_up_on? collection
     expect(vote).to be true
-    # add a new resource to the collection
+    # now with an open collection
+    collection_open = create(:collection, user: user_2, status: :is_open)
+    visit "/collections/#{collection_open.id}"
+    like_link_class = "like-collection-#{collection_open.id}"
+    click_link like_link_class
+    sleep 1
+    vote = user_1.voted_up_on? collection
+    expect(vote).to be true
   end
 
   scenario "a user (logged in) can follow a collection (open or public)" do
     # user logged in
+    user_1 = create(:user)
+    login_as(user_1, :scope => :user)
+    user_2 = create(:user)
+    collection = create(:collection, user: user_2)
     # can access and view a collection
-    # can upvote resources
-    # post comments
-    # add a new resource to the collection
+    visit "/collections/#{collection.id}"
+    like_link_class = "follow-collection-#{collection.id}"
+    click_link like_link_class
+    sleep 1
+    follow = user_1.following?(collection)
+    expect(follow).to be true
+    # same specs with an collection (status: is_open)
+    collection_open = create(:collection, user: user_2, status: :is_open)
+    visit "/collections/#{collection_open.id}"
+    like_link_class = "follow-collection-#{collection_open.id}"
+    click_link like_link_class
+    sleep 1
+    follow = user_1.following?(collection)
+    expect(follow).to be true
   end
 
 end

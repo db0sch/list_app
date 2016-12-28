@@ -1,5 +1,7 @@
 class CollectionsController < ApplicationController
   before_action :set_collection, only: [:show, :edit, :update, :destroy, :like, :follow]
+  skip_before_action :authenticate_user!, only: [ :show ]
+
 
   def index
     @collections = policy_scope(Collection)
