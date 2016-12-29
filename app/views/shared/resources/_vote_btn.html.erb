@@ -1,5 +1,5 @@
 <div class="vote-panel">
-  <%= link_to like_collection_resource_path(resource.collection, resource), class:"upvote-btn", method: :put, remote: true do %>
+  <%= link_to like_collection_resource_path(resource.collection, resource), class:"upvote-btn", id: "upvote-btn-resource-#{resource.id}", method: :put, remote: true do %>
     <div class="up-arrow">
       <%= icon('angle-up') %>
     </div>

@@ -17,6 +17,15 @@
       <p><%= @resource.content %></p>
       <p>URL: <%= link_to "#{@resource.uri}", @resource.uri %></p>
     </div>
+    <% if policy(@resource).edit? %>
+      <div class="resource-controls">
+        <div class="resource-item-admin-controls">
+          <%= render 'shared/resources/vote_btn', resource: @resource %>
+          <%= link_to "edit", edit_collection_resource_path(@resource.collection, @resource), id: "edit-resource-#{@resource.id}" %>
+          <%= link_to "delete", collection_resource_path(@resource.collection, @resource), id: "delete-resource-#{@resource.id}", method: :delete, data: { confirm: "are you sure your want to delete this resource?" }  %>
+        </div>
+      </div>
+    <% end %>
     <div class="resource-stats">
       <h4>Statistics</h4>
       <div class="resource-stats-details">

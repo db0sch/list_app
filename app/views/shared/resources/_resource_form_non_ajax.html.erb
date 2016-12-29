@@ -1,0 +1,6 @@
+<%= simple_form_for([collection, resource]) do |f| %>
+  <%= f.input :title %>
+  <%= f.input :content %>
+  <%= f.input :uri %>
+  <%= f.submit "add a resource", class: "btn btn-primary" %>
+<% end %>

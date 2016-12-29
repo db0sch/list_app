@@ -52,12 +52,14 @@
       <% if policy(@collection).destroy? %>
         <%= link_to "delete this collection", collection_path(@collection), method: :delete, data: { confirm: "It will also delete all the resources inside this collection. Are you sure?" }  %>
       <% end %>
-      <% if @collection.resources.any? %>
-      <!-- render the list of resources belonging to this collection -->
-        <%= render 'shared/resources/resources_list', resources: @collection.resources %>
-      <% else %>
-        <p>sorry, no resources attached to this collection yet</p>
-      <% end %>
+      <div class="resources-list">
+        <% if @collection.resources.any? %>
+        <!-- render the list of resources belonging to this collection -->
+          <%= render 'shared/resources/resources_list', resources: @collection.resources %>
+        <% else %>
+          <p id="no-ressource-text">sorry, no resources attached to this collection yet</p>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
@@ -76,4 +78,3 @@
     </div>
   </div>
 </div>
-
