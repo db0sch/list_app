@@ -13,10 +13,12 @@
           <p>comments</p>
         </div>
       </div>
-<!--       <div class="resource-item-admin-controls">
-        <%# link_to "edit", edit_collection_resource_path(resource.collection, resource) %>
-        <%# link_to "delete", collection_resource_path(resource.collection, resource), method: :delete, data: { confirm: "are you sure your want to delete this resource?" }  %>
-      </div> -->
+      <% if policy(resource).edit? %>
+        <div class="resource-item-admin-controls">
+          <%= link_to "edit", edit_collection_resource_path(resource.collection, resource), id: "edit-resource-#{resource.id}" %>
+          <%= link_to "delete", collection_resource_path(resource.collection, resource), id: "edit-resource-#{resource.id}", method: :delete, data: { confirm: "are you sure your want to delete this resource?" }  %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
