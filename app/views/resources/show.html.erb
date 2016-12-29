@@ -43,7 +43,9 @@
     <h4>Comments</h4>
     <div class="resource-comments-form">
       <!-- TODO -->
-      <%= render 'shared/comments/resource_comment_form', comment: @comment, commentable: @resource %>
+      <% if current_user %>
+        <%= render 'shared/comments/resource_comment_form', comment: @comment, commentable: @resource %>
+      <% end %>
     </div>
     <div class="resource-comments-list">
       <!-- TODO -->
@@ -51,6 +53,3 @@
     </div>
   </div>
 </div>
-
-
-
