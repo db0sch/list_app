@@ -1,11 +1,7 @@
-# Minimal
+# List App
 
 ## What is it?
 a resource sharing app
-
-## Details
-Name : Minimal
-Url : mnmlist.co / mnmlist.io
 
 ## Inspiration
 [Lists are the new search | ben-evans.com)](http://ben-evans.com/benedictevans/2016/1/31/lists-are-the-new-search)
@@ -124,6 +120,8 @@ See `rspec-rails` doc for more information: [rspec-rails](https://github.com/rsp
 Each new feature and new code must be tested before any merge into the master branch.
 If you notice some legacy code without any test, please pull a branch and write the specs, then pull request. I'll appreciate it.
 
+## Previous name
+mnmlist
 ---
 
 Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
